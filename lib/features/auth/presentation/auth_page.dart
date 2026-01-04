@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template/core/router/go_router.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/auth_event.dart';
@@ -40,7 +39,7 @@ class AuthPage extends StatelessWidget {
           }
         },
         builder: (context, state) => switch (state.status) {
-          .loading => const Center(
+          .loading || .authenticated => const Center(
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               strokeWidth: 3,

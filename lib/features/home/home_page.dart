@@ -163,10 +163,6 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
               sl<AuthBloc>().add(SignOutEvent());
-              SnackbarHelper.showSuccess(
-                title: t.logout_success,
-                message: t.logout_success_message,
-              );
               context.go(Routes.login.path);
             },
             child: Text(t.logout),
