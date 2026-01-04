@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/theme/bloc/theme_bloc.dart';
 import 'package:template/core/theme/bloc/theme_event.dart';
-import 'package:template/core/theme/bloc/theme_state.dart';
 import 'package:template/core/theme/domain/entity/app_theme_mode.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';

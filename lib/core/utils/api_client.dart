@@ -8,7 +8,7 @@ class DioClient {
   static dio_lib.CancelToken? _globalCancelToken;
   static final _publicEndpoints = [Routes.login.path];
 
-  static dio_lib.CancelToken getCancelToken() {
+  static dio_lib.CancelToken _getCancelToken() {
     if (_globalCancelToken == null || _globalCancelToken!.isCancelled) {
       _globalCancelToken = dio_lib.CancelToken();
     }
@@ -30,7 +30,6 @@ class DioClient {
     }
     return await sl<StorageModule>().secureStorage.read(key: 'token'); //TODO 1/3/26 palmerodev : must change this
   }
-
 
   static bool _requiresToken(String path) {
     return !_publicEndpoints.any((endpoint) => path.contains(endpoint));
@@ -58,7 +57,7 @@ class DioClient {
         onRequest: (options, handler) async {
           final isFormData = options.data is dio_lib.FormData;
 
-          options.cancelToken = getCancelToken();
+          options.cancelToken = _getCancelToken();
 
           if (addContentType && !isFormData && !options.headers.containsKey('content-type')) {
             options.headers['content-type'] = 'application/json';
@@ -98,14 +97,6 @@ class DioClient {
     );
 
     return dio;
-  }
-
-  static Future<String> getLocale() async {
-    return await sl<StorageModule>().secureStorage.read(key: 'locale') ?? 'en';
-  }
-
-  static void clearToken() {
-    _cachedToken = null;
   }
 
   static Future<void> updateToken(String token) async {
