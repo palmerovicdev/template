@@ -13,13 +13,13 @@ if [ -z "$1" ]; then
 fi
 
 NEW_NAME="$1"
-NEW_NAME_LOWER=$(echo "$NEW_NAME" | tr '[:upper:]' '[:lower:]')
+NEW_NAME_LOWER=$(echo "$NEW_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
 NEW_NAME_TITLE=$(echo "$NEW_NAME" | sed 's/\b\(.\)/\u\1/g')  # Title case
 NEW_NAME_UPPER=$(echo "$NEW_NAME" | tr '[:lower:]' '[:upper:]')
 
 echo "🚀 Renombrando app de 'template' a '$NEW_NAME'"
 echo "   - Nombre normal: $NEW_NAME"
-echo "   - Minúsculas: $NEW_NAME_LOWER"
+echo "   - Minúsculas (sin espacios): $NEW_NAME_LOWER"
 echo "   - Title case: $NEW_NAME_TITLE"
 echo ""
 
@@ -27,7 +27,7 @@ echo ""
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# Función para reemplazar en archivos
+# Función para reemplazar en archivos (macOS y Linux compatible)
 replace_in_file() {
     local file="$1"
     local old="$2"
@@ -35,10 +35,8 @@ replace_in_file() {
 
     if [ -f "$file" ]; then
         if [[ "$OSTYPE" == "darwin"* ]]; then
-            # macOS
             sed -i '' "s/$old/$new/g" "$file"
         else
-            # Linux
             sed -i "s/$old/$new/g" "$file"
         fi
         echo "✅ Actualizado: $file"
@@ -80,8 +78,18 @@ replace_in_file "lib/i18n/es.i18n.json" "Bienvenido a Template" "Bienvenido a $N
 # 6. Archivos Dart - imports y referencias
 echo ""
 echo "🎯 Actualizando archivos Dart..."
-find lib -name "*.dart" -type f -exec sed -i '' "s/package:template\//package:$NEW_NAME_LOWER\//g" {} \;
-echo "✅ Actualizados imports en archivos Dart"
+find lib -name "*.dart" -type f | while read file; do
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # Actualizar imports de package:template/
+        sed -i '' "s/package:template\//package:$NEW_NAME_LOWER\//g" "$file"
+        # Actualizar title: 'Template' en MaterialApp
+        sed -i '' "s/title: 'Template'/title: '$NEW_NAME_TITLE'/g" "$file"
+    else
+        sed -i "s/package:template\//package:$NEW_NAME_LOWER\//g" "$file"
+        sed -i "s/title: 'Template'/title: '$NEW_NAME_TITLE'/g" "$file"
+    fi
+done
+echo "✅ Actualizados imports y referencias en archivos Dart"
 
 # 7. Android - archivos Kotlin/Java
 echo ""
@@ -98,7 +106,7 @@ echo "✅ Actualizados archivos Kotlin/Java"
 # 8. Android - AndroidManifest.xml
 echo ""
 echo "📱 Actualizando AndroidManifest.xml..."
-find android/app/src/main -name "AndroidManifest.xml" -type f | while read file; do
+find android/app/src -name "AndroidManifest.xml" -type f | while read file; do
     if [[ "$OSTYPE" == "darwin"* ]]; then
         sed -i '' "s/com\.palmerodev\.template/com.palmerodev.$NEW_NAME_LOWER/g" "$file"
     else
@@ -107,34 +115,22 @@ find android/app/src/main -name "AndroidManifest.xml" -type f | while read file;
 done
 echo "✅ Actualizados AndroidManifest.xml"
 
-# 9. iOS - archivos de configuración
+# 9. iOS - project.pbxproj (incluyendo variantes con sufijos)
 echo ""
 echo "🍎 Actualizando configuraciones iOS..."
 if [ -f "ios/Runner.xcodeproj/project.pbxproj" ]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        # Bundle identifiers
+        # Bundle identifiers (preservando sufijos como .dev, .staging, .RunnerTests)
         sed -i '' "s/com\.palmerodev\.template/com.palmerodev.$NEW_NAME_LOWER/g" "ios/Runner.xcodeproj/project.pbxproj"
-        # APP_DISPLAY_NAME para Dev
+        # APP_DISPLAY_NAME para cada flavor
         sed -i '' "s/APP_DISPLAY_NAME = \"Template Dev\"/APP_DISPLAY_NAME = \"$NEW_NAME_TITLE Dev\"/g" "ios/Runner.xcodeproj/project.pbxproj"
-        # APP_DISPLAY_NAME para Staging
         sed -i '' "s/APP_DISPLAY_NAME = \"Template Staging\"/APP_DISPLAY_NAME = \"$NEW_NAME_TITLE Staging\"/g" "ios/Runner.xcodeproj/project.pbxproj"
-        # APP_DISPLAY_NAME para Prod
         sed -i '' "s/APP_DISPLAY_NAME = \"Template Prod\"/APP_DISPLAY_NAME = \"$NEW_NAME_TITLE Prod\"/g" "ios/Runner.xcodeproj/project.pbxproj"
-        # template.app references
-        sed -i '' "s/template\.app/$NEW_NAME_LOWER.app/g" "ios/Runner.xcodeproj/project.pbxproj"
-        sed -i '' "s/\"template\.app\"/\"$NEW_NAME_LOWER.app\"/g" "ios/Runner.xcodeproj/project.pbxproj"
-        sed -i '' "s/path = \"template\.app\"/path = \"$NEW_NAME_LOWER.app\"/g" "ios/Runner.xcodeproj/project.pbxproj"
-        # TEST_HOST references
-        sed -i '' "s/\/template\.app/\/$NEW_NAME_LOWER.app/g" "ios/Runner.xcodeproj/project.pbxproj"
     else
         sed -i "s/com\.palmerodev\.template/com.palmerodev.$NEW_NAME_LOWER/g" "ios/Runner.xcodeproj/project.pbxproj"
         sed -i "s/APP_DISPLAY_NAME = \"Template Dev\"/APP_DISPLAY_NAME = \"$NEW_NAME_TITLE Dev\"/g" "ios/Runner.xcodeproj/project.pbxproj"
         sed -i "s/APP_DISPLAY_NAME = \"Template Staging\"/APP_DISPLAY_NAME = \"$NEW_NAME_TITLE Staging\"/g" "ios/Runner.xcodeproj/project.pbxproj"
         sed -i "s/APP_DISPLAY_NAME = \"Template Prod\"/APP_DISPLAY_NAME = \"$NEW_NAME_TITLE Prod\"/g" "ios/Runner.xcodeproj/project.pbxproj"
-        sed -i "s/template\.app/$NEW_NAME_LOWER.app/g" "ios/Runner.xcodeproj/project.pbxproj"
-        sed -i "s/\"template\.app\"/\"$NEW_NAME_LOWER.app\"/g" "ios/Runner.xcodeproj/project.pbxproj"
-        sed -i "s/path = \"template\.app\"/path = \"$NEW_NAME_LOWER.app\"/g" "ios/Runner.xcodeproj/project.pbxproj"
-        sed -i "s/\/template\.app/\/$NEW_NAME_LOWER.app/g" "ios/Runner.xcodeproj/project.pbxproj"
     fi
     echo "✅ Actualizado project.pbxproj"
 fi
@@ -181,39 +177,13 @@ if [ -f "macos/Runner/Configs/AppInfo.xcconfig" ]; then
     echo "✅ Actualizado AppInfo.xcconfig"
 fi
 
-if [ -f "macos/Runner/Info.plist" ]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "s/<string>template<\/string>/<string>$NEW_NAME_LOWER<\/string>/g" "macos/Runner/Info.plist"
-    else
-        sed -i "s/<string>template<\/string>/<string>$NEW_NAME_LOWER<\/string>/g" "macos/Runner/Info.plist"
-    fi
-    echo "✅ Actualizado Info.plist de macOS"
-fi
-
 if [ -f "macos/Runner.xcodeproj/project.pbxproj" ]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
         sed -i '' "s/com\.palmerodev\.template/com.palmerodev.$NEW_NAME_LOWER/g" "macos/Runner.xcodeproj/project.pbxproj"
-        sed -i '' "s/template\.app/$NEW_NAME_LOWER.app/g" "macos/Runner.xcodeproj/project.pbxproj"
-        sed -i '' "s/\"template\.app\"/\"$NEW_NAME_LOWER.app\"/g" "macos/Runner.xcodeproj/project.pbxproj"
-        sed -i '' "s/path = \"template\.app\"/path = \"$NEW_NAME_LOWER.app\"/g" "macos/Runner.xcodeproj/project.pbxproj"
-        sed -i '' "s/\/template\.app/\/$NEW_NAME_LOWER.app/g" "macos/Runner.xcodeproj/project.pbxproj"
     else
         sed -i "s/com\.palmerodev\.template/com.palmerodev.$NEW_NAME_LOWER/g" "macos/Runner.xcodeproj/project.pbxproj"
-        sed -i "s/template\.app/$NEW_NAME_LOWER.app/g" "macos/Runner.xcodeproj/project.pbxproj"
-        sed -i "s/\"template\.app\"/\"$NEW_NAME_LOWER.app\"/g" "macos/Runner.xcodeproj/project.pbxproj"
-        sed -i "s/path = \"template\.app\"/path = \"$NEW_NAME_LOWER.app\"/g" "macos/Runner.xcodeproj/project.pbxproj"
-        sed -i "s/\/template\.app/\/$NEW_NAME_LOWER.app/g" "macos/Runner.xcodeproj/project.pbxproj"
     fi
     echo "✅ Actualizado project.pbxproj de macOS"
-fi
-
-if [ -f "macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" ]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "s/BuildableName = \"template\.app\"/BuildableName = \"$NEW_NAME_LOWER.app\"/g" "macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme"
-    else
-        sed -i "s/BuildableName = \"template\.app\"/BuildableName = \"$NEW_NAME_LOWER.app\"/g" "macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme"
-    fi
-    echo "✅ Actualizado Runner.xcscheme de macOS"
 fi
 
 # 13. Windows - CMakeLists.txt
@@ -240,18 +210,18 @@ if [ -f "windows/runner/main.cpp" ]; then
     echo "✅ Actualizado main.cpp de Windows"
 fi
 
-# 15. Windows - Runner.rc
+# 15. Windows - Runner.rc (con formato correcto incluyendo "\0")
 if [ -f "windows/runner/Runner.rc" ]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "s/VALUE \"FileDescription\", \"template\"/VALUE \"FileDescription\", \"$NEW_NAME_TITLE\"/g" "windows/runner/Runner.rc"
-        sed -i '' "s/VALUE \"InternalName\", \"template\"/VALUE \"InternalName\", \"$NEW_NAME_LOWER\"/g" "windows/runner/Runner.rc"
-        sed -i '' "s/VALUE \"OriginalFilename\", \"template\.exe\"/VALUE \"OriginalFilename\", \"$NEW_NAME_LOWER.exe\"/g" "windows/runner/Runner.rc"
-        sed -i '' "s/VALUE \"ProductName\", \"template\"/VALUE \"ProductName\", \"$NEW_NAME_TITLE\"/g" "windows/runner/Runner.rc"
+        sed -i '' 's/VALUE "FileDescription", "template" "\\0"/VALUE "FileDescription", "'"$NEW_NAME_TITLE"'" "\\0"/g' "windows/runner/Runner.rc"
+        sed -i '' 's/VALUE "InternalName", "template" "\\0"/VALUE "InternalName", "'"$NEW_NAME_LOWER"'" "\\0"/g' "windows/runner/Runner.rc"
+        sed -i '' 's/VALUE "OriginalFilename", "template\.exe" "\\0"/VALUE "OriginalFilename", "'"$NEW_NAME_LOWER"'.exe" "\\0"/g' "windows/runner/Runner.rc"
+        sed -i '' 's/VALUE "ProductName", "template" "\\0"/VALUE "ProductName", "'"$NEW_NAME_TITLE"'" "\\0"/g' "windows/runner/Runner.rc"
     else
-        sed -i "s/VALUE \"FileDescription\", \"template\"/VALUE \"FileDescription\", \"$NEW_NAME_TITLE\"/g" "windows/runner/Runner.rc"
-        sed -i "s/VALUE \"InternalName\", \"template\"/VALUE \"InternalName\", \"$NEW_NAME_LOWER\"/g" "windows/runner/Runner.rc"
-        sed -i "s/VALUE \"OriginalFilename\", \"template\.exe\"/VALUE \"OriginalFilename\", \"$NEW_NAME_LOWER.exe\"/g" "windows/runner/Runner.rc"
-        sed -i "s/VALUE \"ProductName\", \"template\"/VALUE \"ProductName\", \"$NEW_NAME_TITLE\"/g" "windows/runner/Runner.rc"
+        sed -i 's/VALUE "FileDescription", "template" "\\0"/VALUE "FileDescription", "'"$NEW_NAME_TITLE"'" "\\0"/g' "windows/runner/Runner.rc"
+        sed -i 's/VALUE "InternalName", "template" "\\0"/VALUE "InternalName", "'"$NEW_NAME_LOWER"'" "\\0"/g' "windows/runner/Runner.rc"
+        sed -i 's/VALUE "OriginalFilename", "template\.exe" "\\0"/VALUE "OriginalFilename", "'"$NEW_NAME_LOWER"'.exe" "\\0"/g' "windows/runner/Runner.rc"
+        sed -i 's/VALUE "ProductName", "template" "\\0"/VALUE "ProductName", "'"$NEW_NAME_TITLE"'" "\\0"/g' "windows/runner/Runner.rc"
     fi
     echo "✅ Actualizado Runner.rc de Windows"
 fi
@@ -286,6 +256,19 @@ if [ -f "README.md" ]; then
     echo "✅ Actualizado README.md"
 fi
 
+# 18. Renombrar archivos .iml
+echo ""
+echo "📂 Renombrando archivos de proyecto..."
+if [ -f "template.iml" ]; then
+    mv "template.iml" "$NEW_NAME_LOWER.iml"
+    echo "✅ Renombrado template.iml -> $NEW_NAME_LOWER.iml"
+fi
+
+if [ -f "android/template_android.iml" ]; then
+    mv "android/template_android.iml" "android/${NEW_NAME_LOWER}_android.iml"
+    echo "✅ Renombrado android/template_android.iml -> android/${NEW_NAME_LOWER}_android.iml"
+fi
+
 echo ""
 echo "✨ ¡Renombrado completado!"
 echo ""
@@ -297,17 +280,20 @@ echo ""
 echo "📱 Plataformas actualizadas:"
 echo "   ✅ Android (build.gradle.kts, Kotlin/Java, AndroidManifest.xml)"
 echo "   ✅ iOS (Info.plist, project.pbxproj, APP_DISPLAY_NAME)"
-echo "   ✅ macOS (AppInfo.xcconfig, Info.plist, project.pbxproj, xcscheme)"
+echo "   ✅ macOS (AppInfo.xcconfig, project.pbxproj)"
 echo "   ✅ Linux (CMakeLists.txt, my_application.cc)"
 echo "   ✅ Windows (CMakeLists.txt, main.cpp, Runner.rc)"
 echo "   ✅ Web (manifest.json, index.html)"
-echo "   ✅ Archivos Dart (imports, main.dart, etc.)"
-echo "   ✅ i18n (en.i18n.json, es.i18n.json, archivos generados)"
+echo "   ✅ Archivos Dart (imports, main.dart title, etc.)"
+echo "   ✅ i18n (en.i18n.json, es.i18n.json)"
 echo "   ✅ README.md"
+echo "   ✅ Archivos .iml renombrados"
 echo ""
 echo "🔧 Pasos recomendados después:"
 echo "   1. Ejecuta: flutter clean"
 echo "   2. Ejecuta: flutter pub get"
-echo "   3. Reconstruye la app para cada plataforma"
+echo "   3. Ejecuta: dart run build_runner build --delete-conflicting-outputs"
+echo "      (para regenerar archivos i18n y otros generados)"
+echo "   4. Reconstruye la app para cada plataforma"
 echo ""
 echo "⚠️  Nota: Si usas Git, verifica los cambios con: git status"
