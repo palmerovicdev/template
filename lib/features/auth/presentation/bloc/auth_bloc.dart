@@ -4,7 +4,7 @@ import 'package:template/features/auth/domain/repository/auth_repository.dart';
 import 'package:template/features/auth/presentation/bloc/auth_event.dart';
 import 'package:template/features/auth/presentation/bloc/auth_state.dart';
 
-@injectable
+@lazySingleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this.authRepository) : super(AuthState.initial()) {
     on<SignInEvent>(_onSignIn);

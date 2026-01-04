@@ -15,7 +15,7 @@ class BlocInit extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => sl<AuthBloc>()..add(GetCurrentUserEvent())),
-        BlocProvider<ThemeBloc>(create: (_) => sl<ThemeBloc>()),
+        BlocProvider(create: (_) => sl<ThemeBloc>()),
       ],
       child: child ?? const Placeholder(),
     );

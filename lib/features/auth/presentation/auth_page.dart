@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:template/core/router/routes.dart';
+import 'package:template/core/router/go_router.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/auth_event.dart';
@@ -19,6 +18,10 @@ class AuthPage extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
+          if (state.status == .unauthenticated || state.status == .authenticated) {
+            authStateNotifier.value = state;
+          }
+
           switch (state.status) {
             case .failure:
               if (state.errorMessage != null) {
@@ -33,7 +36,6 @@ class AuthPage extends StatelessWidget {
                 title: t.auth_success,
                 message: t.auth_success,
               );
-              context.go(Routes.home.path);
               break;
             case .initial:
             case .loading:

@@ -4,7 +4,7 @@ import 'package:template/core/theme/bloc/theme_event.dart';
 import 'package:template/core/theme/bloc/theme_state.dart';
 import 'package:template/core/theme/domain/repository/theme_repository.dart';
 
-@injectable
+@lazySingleton
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc(this._repository) : super(ThemeState.initial()) {
     on<LoadTheme>(_onLoadTheme);

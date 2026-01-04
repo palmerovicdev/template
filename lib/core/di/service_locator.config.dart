@@ -36,10 +36,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i961.AuthRepository>(() => _i409.AuthRepositoryImpl());
     gh.lazySingleton<_i909.ThemeRepository>(() => _i671.ThemeRepositoryImpl());
-    gh.factory<_i797.AuthBloc>(
+    gh.lazySingleton<_i797.AuthBloc>(
       () => _i797.AuthBloc(gh<_i961.AuthRepository>()),
     );
-    gh.factory<_i279.ThemeBloc>(
+    gh.lazySingleton<_i279.ThemeBloc>(
       () => _i279.ThemeBloc(gh<_i909.ThemeRepository>()),
     );
     return this;
