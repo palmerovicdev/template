@@ -252,4 +252,14 @@ class Strings with BaseTranslations<AppLocale, Strings> {
   ///
   /// es: '¿Olvidaste tu contraseña?'
   String get forgot_password => 'Forgot password?';
+
+  /// en: 'Don't have an account?'
+  ///
+  /// es: '¿No tienes una cuenta?'
+  String get dont_have_an_account => 'Don\'t have an account?';
+
+  /// en: 'Sign up'
+  ///
+  /// es: 'Regístrate'
+  String get sign_up => 'Sign up';
 }

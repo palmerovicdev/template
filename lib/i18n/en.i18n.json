@@ -40,5 +40,7 @@
   "cancel": "Cancel",
   "logout_success": "Logged out successfully",
   "logout_success_message": "You have been logged out successfully.",
-  "forgot_password": "Forgot password?"
+  "forgot_password": "Forgot password?",
+  "dont_have_an_account": "Don't have an account?",
+  "sign_up": "Sign up"
 }

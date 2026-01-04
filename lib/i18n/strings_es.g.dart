@@ -123,4 +123,8 @@ class StringsEs extends Strings with BaseTranslations<AppLocale, Strings> {
   String get logout_success_message => 'Has cerrado sesión correctamente.';
   @override
   String get forgot_password => '¿Olvidaste tu contraseña?';
+  @override
+  String get dont_have_an_account => '¿No tienes una cuenta?';
+  @override
+  String get sign_up => 'Regístrate';
 }

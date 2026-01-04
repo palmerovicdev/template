@@ -40,5 +40,7 @@
   "cancel": "Cancelar",
   "logout_success": "Sesión cerrada correctamente",
   "logout_success_message": "Has cerrado sesión correctamente.",
-  "forgot_password": "¿Olvidaste tu contraseña?"
+  "forgot_password": "¿Olvidaste tu contraseña?",
+  "dont_have_an_account": "¿No tienes una cuenta?",
+  "sign_up": "Regístrate"
 }

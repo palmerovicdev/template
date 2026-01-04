@@ -15,14 +15,19 @@ class Header extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          height: 200,
+          height: 120,
           decoration: BoxDecoration(
             color: AppColors.light.text,
           ),
-          child: Icon(
-            Iconic.user,
-            size: 80,
-            color: AppColors.light.bgLight,
+          child: Column(
+            children: [
+              Icon(
+                Iconic.user,
+                size: 80,
+                color: AppColors.light.bgLight,
+              ),
+              const Gap(16),
+            ],
           ),
         ),
         const Gap(48),
