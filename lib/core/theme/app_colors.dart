@@ -83,38 +83,3 @@ class AppLightColors implements AppThemeColors {
   @override
   Color get borderMuted => const HSLColor.fromAHSL(1, 212, 0.06, 0.62).toColor();
 }
-
-/*:root {
-  /* hsl (fallback color) */
-  --bg-dark: hsl(214 25% 1%);
-  --bg: hsl(212 16% 4%);
-  --bg-light: hsl(212 9% 9%);
-  --text: hsl(212 47% 95%);
-  --text-muted: hsl(212 7% 70%);
-  --highlight: hsl(212 5% 39%);
-  --border: hsl(212 6% 28%);
-  --border-muted: hsl(212 9% 18%);
-  --primary: hsl(212 77% 72%);
-  --secondary: hsl(34 60% 63%);
-  --danger: hsl(9 26% 64%);
-  --warning: hsl(52 19% 57%);
-  --success: hsl(146 17% 59%);
-  --info: hsl(217 28% 65%);
-}
-body.light {
-  /* hsl (fallback color) */
-  --bg-dark: hsl(212 11% 90%);
-  --bg: hsl(212 22% 95%);
-  --bg-light: hsl(212 100% 100%);
-  --text: hsl(213 30% 5%);
-  --text-muted: hsl(212 6% 28%);
-  --highlight: hsl(212 100% 100%);
-  --border: hsl(212 4% 51%);
-  --border-muted: hsl(212 6% 62%);
-  --primary: hsl(210 69% 29%);
-  --secondary: hsl(39 100% 16%);
-  --danger: hsl(9 21% 41%);
-  --warning: hsl(52 23% 34%);
-  --success: hsl(147 19% 36%);
-  --info: hsl(217 22% 41%);
-}*/
