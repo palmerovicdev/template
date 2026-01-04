@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:iconic/iconic.dart';
 import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/theme/app_constants.dart';
 import 'package:template/core/widgets/input_form_field.dart';
@@ -41,41 +42,52 @@ class _AuthFormState extends State<AuthForm> {
           key: _formKey,
           child: Column(
             children: [
-              InputFormField(
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return t.email_required;
-                  }
-                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-                    return t.email_invalid;
-                  }
-                  return null;
-                },
-                hintText: t.email_hint,
-                prefixIcon: Icons.email_outlined,
+              Column(
+                crossAxisAlignment: .end,
+                children: [
+                  InputFormField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return t.email_required;
+                      }
+                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                        return t.email_invalid;
+                      }
+                      return null;
+                    },
+                    hintText: t.email_hint,
+                    prefixIcon: Icons.email_outlined,
+                  ),
+                  const Gap(16),
+                  InputFormField(
+                    controller: _passwordController,
+                    keyboardType: TextInputType.visiblePassword,
+                    hintText: t.password_hint,
+                    prefixIcon: Icons.lock_outlined,
+                    isPassword: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return t.password_required;
+                      }
+                      if (value.length < 6) {
+                        return t.password_too_short;
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    child: TextButton(
+                      style: TextButton.styleFrom(visualDensity: VisualDensity.compact),
+                      onPressed: () {},
+                      child: Text(t.forgot_password),
+                    ),
+                  ),
+                ],
               ),
-              const Gap(16),
 
-              InputFormField(
-                controller: _passwordController,
-                keyboardType: TextInputType.visiblePassword,
-                hintText: t.password_hint,
-                prefixIcon: Icons.lock_outlined,
-                isPassword: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return t.password_required;
-                  }
-                  if (value.length < 6) {
-                    return t.password_too_short;
-                  }
-                  return null;
-                },
-              ),
-
-              const Gap(24),
+              const Gap(42),
 
               SizedBox(
                 width: double.infinity,
@@ -85,13 +97,12 @@ class _AuthFormState extends State<AuthForm> {
                   child: Row(
                     mainAxisAlignment: .center,
                     children: [
-                      const Icon(Icons.login, size: 24),
-                      const SizedBox(width: 12),
+                      const Icon(Iconic.sign_in_alt, size: 20),
+                      const Gap(12),
                       Text(
                         t.sign_in,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontSize: 18,
-                          fontWeight: .w600,
                           letterSpacing: 0.5,
                         ),
                       ),

@@ -39,5 +39,6 @@
   "logout_confirmation": "Are you sure you want to logout?",
   "cancel": "Cancel",
   "logout_success": "Logged out successfully",
-  "logout_success_message": "You have been logged out successfully."
+  "logout_success_message": "You have been logged out successfully.",
+  "forgot_password": "Forgot password?"
 }

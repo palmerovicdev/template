@@ -39,5 +39,6 @@
   "logout_confirmation": "¿Estás seguro de que quieres cerrar sesión?",
   "cancel": "Cancelar",
   "logout_success": "Sesión cerrada correctamente",
-  "logout_success_message": "Has cerrado sesión correctamente."
+  "logout_success_message": "Has cerrado sesión correctamente.",
+  "forgot_password": "¿Olvidaste tu contraseña?"
 }

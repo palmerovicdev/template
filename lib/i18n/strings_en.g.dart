@@ -247,4 +247,9 @@ class Strings with BaseTranslations<AppLocale, Strings> {
   ///
   /// es: 'Has cerrado sesión correctamente.'
   String get logout_success_message => 'You have been logged out successfully.';
+
+  /// en: 'Forgot password?'
+  ///
+  /// es: '¿Olvidaste tu contraseña?'
+  String get forgot_password => 'Forgot password?';
 }
