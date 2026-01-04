@@ -28,14 +28,21 @@ class AppTheme {
     iconTheme: IconThemeData(color: AppColors.light.text),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        iconColor: AppColors.light.text,
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.light.text,
+        textStyle: TextStyle(color: AppColors.light.text, fontWeight: FontWeight.bold),
+        iconColor: AppColors.light.text,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: AppColors.light.textMuted,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
     ),
   );
@@ -70,10 +77,18 @@ class AppTheme {
         foregroundColor: AppColors.dark.text,
         textStyle: TextStyle(color: AppColors.dark.text, fontWeight: FontWeight.bold),
         iconColor: AppColors.dark.text,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(foregroundColor: AppColors.dark.textMuted),
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.dark.textMuted,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
     ),
   );
 }

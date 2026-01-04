@@ -93,14 +93,6 @@ class AuthPage extends StatelessWidget {
                         onPressed: () {
                           context.read<AuthBloc>().add(SignInEvent());
                         },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: colorScheme.onPrimaryContainer,
-                          elevation: 0,
-                          shadowColor: colorScheme.outline.withOpacity(0.2),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
