@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:template/core/theme/app_colors.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:template/features/auth/presentation/bloc/auth_event.dart';
 import 'package:template/features/auth/presentation/bloc/auth_state.dart';
+import 'package:template/features/auth/presentation/sections/auth_form.dart';
 import 'package:template/features/auth/presentation/sections/auth_header.dart';
 import 'package:template/i18n/strings.g.dart';
 
@@ -17,34 +17,8 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _obscurePassword = true;
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  void _handleSignIn() {
-    if (_formKey.currentState!.validate()) {
-      context.read<AuthBloc>().add(
-        SignInEvent(
-          email: _emailController.text.trim(),
-          password: _passwordController.text,
-        ),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(backgroundColor: AppColors.light.text),
       body: BlocConsumer<AuthBloc, AuthState>(
@@ -81,108 +55,15 @@ class _AuthPageState extends State<AuthPage> {
             child: Column(
               children: [
                 const Header(),
-                const Gap(64),
+                const Gap(48),
 
                 SingleChildScrollView(
-                  padding: const EdgeInsets.all(32.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
                   child: Column(
                     mainAxisAlignment: .center,
                     children: [
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            // Email Field
-                            TextFormField(
-                              controller: _emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                hintText: t.email_hint,
-                                prefixIcon: const Icon(Icons.email_outlined),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                filled: true,
-                                fillColor: colorScheme.surface,
-                              ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return t.email_required;
-                                }
-                                if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-                                  return t.email_invalid;
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 16),
-
-                            // Password Field
-                            TextFormField(
-                              controller: _passwordController,
-                              obscureText: _obscurePassword,
-                              textInputAction: TextInputAction.done,
-                              onFieldSubmitted: (_) => _handleSignIn(),
-                              decoration: InputDecoration(
-                                hintText: t.password_hint,
-                                prefixIcon: const Icon(Icons.lock_outlined),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _obscurePassword = !_obscurePassword;
-                                    });
-                                  },
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                filled: true,
-                                fillColor: colorScheme.surface,
-                              ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return t.password_required;
-                                }
-                                if (value.length < 6) {
-                                  return t.password_too_short;
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 24),
-
-                            // Sign In Button
-                            SizedBox(
-                              width: double.infinity,
-                              height: 60,
-                              child: ElevatedButton(
-                                onPressed: _handleSignIn,
-                                child: Row(
-                                  mainAxisAlignment: .center,
-                                  children: [
-                                    const Icon(Icons.login, size: 24),
-                                    const SizedBox(width: 12),
-                                    Text(
-                                      t.sign_in,
-                                      style: theme.textTheme.titleMedium?.copyWith(
-                                        fontSize: 18,
-                                        fontWeight: .w600,
-                                        letterSpacing: 0.5,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: 24),
+                      const AuthForm(),
+                      const Gap(24),
 
                       Row(
                         mainAxisAlignment: .spaceEvenly,
