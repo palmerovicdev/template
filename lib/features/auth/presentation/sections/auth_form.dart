@@ -19,7 +19,6 @@ class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _obscurePassword = true;
 
   void _handleSignIn() {
     if (_formKey.currentState!.validate()) {
@@ -87,7 +86,7 @@ class _AuthFormState extends State<AuthForm> {
                 ],
               ),
 
-              const Gap(42),
+              const Gap(32),
 
               SizedBox(
                 width: double.infinity,
