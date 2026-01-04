@@ -117,29 +117,29 @@ El proyecto está configurado con tres flavors:
 
 **Android:**
 ```bash
-flutter run --flavor dev -t lib/main.dart
-flutter run --flavor staging -t lib/main.dart
-flutter run --flavor prod -t lib/main.dart
+flutter run --flavor dev --dart-define=FLAVOR=dev -t lib/main.dart
+flutter run --flavor staging --dart-define=FLAVOR=staging -t lib/main.dart
+flutter run --flavor prod --dart-define=FLAVOR=prod -t lib/main.dart
 ```
 
 **iOS:**
 ```bash
-flutter run --flavor dev -t lib/main.dart
-flutter run --flavor staging -t lib/main.dart
-flutter run --flavor prod -t lib/main.dart
+flutter run --flavor dev --dart-define=FLAVOR=dev -t lib/main.dart
+flutter run --flavor staging --dart-define=FLAVOR=staging -t lib/main.dart
+flutter run --flavor prod --dart-define=FLAVOR=prod -t lib/main.dart
 ```
 
 ### Build para producción
 
 **Android:**
 ```bash
-flutter build apk --flavor prod --release
-flutter build appbundle --flavor prod --release
+flutter build apk --flavor prod --dart-define=FLAVOR=prod --release
+flutter build appbundle --flavor prod --dart-define=FLAVOR=prod --release
 ```
 
 **iOS:**
 ```bash
-flutter build ios --flavor prod --release
+flutter build ios --flavor prod --dart-define=FLAVOR=prod --release
 ```
 
 ## 🌍 Internacionalización
