@@ -103,7 +103,11 @@ class SnackbarHelper {
           content: Row(
             children: [
               if (icon != null) ...[
-                Icon(icon, color: txtColor, size: 24),
+                _AnimatedIcon(
+                  durationValue: const Duration(milliseconds: 500),
+                  txtColor: txtColor,
+                  icon: icon,
+                ),
                 const SizedBox(width: 10),
               ],
               Expanded(
@@ -142,5 +146,63 @@ class SnackbarHelper {
           ),
         ),
       );
+  }
+}
+
+class _AnimatedIcon extends StatefulWidget {
+  const _AnimatedIcon({
+    required this.durationValue,
+    required this.txtColor,
+    required this.icon,
+  });
+
+  final Duration durationValue;
+  final Color txtColor;
+  final IconData icon;
+
+  @override
+  State<_AnimatedIcon> createState() => _AnimatedIconState();
+}
+class _AnimatedIconState extends State<_AnimatedIcon>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _opacity;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: widget.durationValue,
+      vsync: this,
+    )..repeat(reverse: true);
+
+    _opacity = Tween<double>(
+      begin: 0.4,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _opacity,
+      child: Icon(
+        widget.icon,
+        color: widget.txtColor,
+        size: 24,
+      ),
+    );
   }
 }
