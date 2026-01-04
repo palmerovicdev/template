@@ -6,11 +6,11 @@ import 'package:template/core/theme/domain/repository/theme_repository.dart';
 
 @injectable
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-
   ThemeBloc(this._repository) : super(ThemeState.initial()) {
     on<LoadTheme>(_onLoadTheme);
     on<ChangeTheme>(_onChangeTheme);
   }
+
   final ThemeRepository _repository;
 
   Future<void> _onLoadTheme(LoadTheme event, Emitter<ThemeState> emit) async {

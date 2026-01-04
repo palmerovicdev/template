@@ -1,7 +1,8 @@
 enum Routes {
   home,
   login,
-  splash;
+  splash
+  ;
 
   String get path => '/${name.toLowerCase()}';
 }

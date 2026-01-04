@@ -15,42 +15,50 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserEntity {
 
- String get id; String? get email; String? get displayName; String? get avatarUrl;
-/// Create a copy of UserEntity
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$UserEntityCopyWith<UserEntity> get copyWith => _$UserEntityCopyWithImpl<UserEntity>(this as UserEntity, _$identity);
+  String get id;
+
+  String? get email;
+
+  String? get displayName;
+
+  String? get avatarUrl;
+
+  /// Create a copy of UserEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<UserEntity> get copyWith => _$UserEntityCopyWithImpl<UserEntity>(this as UserEntity, _$identity);
 
   /// Serializes this UserEntity to a JSON map.
   Map<String, dynamic> toJson();
 
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserEntity&&super == other&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl));
-}
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType && other is UserEntity && super == other && (identical(other.id, id) || other.id == id) &&
+        (identical(other.email, email) || other.email == email) && (identical(other.displayName, displayName) || other.displayName == displayName) &&
+        (identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl));
+  }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,super.hashCode,id,email,displayName,avatarUrl);
-
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, super.hashCode, id, email, displayName, avatarUrl);
 
 
 }
 
 /// @nodoc
-abstract mixin class $UserEntityCopyWith<$Res>  {
+abstract mixin class $UserEntityCopyWith<$Res> {
   factory $UserEntityCopyWith(UserEntity value, $Res Function(UserEntity) _then) = _$UserEntityCopyWithImpl;
-@useResult
-$Res call({
- String id, String? email, String? displayName, String? avatarUrl
-});
 
-
+  @useResult
+  $Res call({
+    String id, String? email, String? displayName, String? avatarUrl
+  });
 
 
 }
+
 /// @nodoc
 class _$UserEntityCopyWithImpl<$Res>
     implements $UserEntityCopyWith<$Res> {
@@ -59,177 +67,195 @@ class _$UserEntityCopyWithImpl<$Res>
   final UserEntity _self;
   final $Res Function(UserEntity) _then;
 
-/// Create a copy of UserEntity
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? email = freezed,Object? displayName = freezed,Object? avatarUrl = freezed,}) {
-  return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,displayName: freezed == displayName ? _self.displayName : displayName // ignore: cast_nullable_to_non_nullable
-as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
+  /// Create a copy of UserEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = null, Object? email = freezed, Object? displayName = freezed, Object? avatarUrl = freezed,}) {
+    return _then(_self.copyWith(
+      id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+      as String, email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+    as String?, displayName: freezed == displayName ? _self.displayName : displayName // ignore: cast_nullable_to_non_nullable
+    as String?, avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+    as String?,
+    ));
+  }
 
 }
 
 
 /// Adds pattern-matching-related methods to [UserEntity].
 extension UserEntityPatterns on UserEntity {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserEntity value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _UserEntity() when $default != null:
-return $default(_that);case _:
+  @optionalTypeArgs TResult maybeMap
+
+  <
+
+  TResult
+
+  extends
+
+  Object?
+
+  >
+
+  (
+
+  TResult Function( _UserEntity value)? $default,{required TResult orElse(),}){
+  final _that = this;
+  switch (_that) {
+  case _UserEntity() when $default != null:
+  return $default(_that);case _:
   return orElse();
 
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
+  }
+  }
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserEntity value)  $default,){
-final _that = this;
-switch (_that) {
-case _UserEntity():
-return $default(_that);}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
+  @optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserEntity value) $default,){
+  final _that = this;
+  switch (_that) {
+  case _UserEntity():
+  return $default(_that);}
+  }
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserEntity value)?  $default,){
-final _that = this;
-switch (_that) {
-case _UserEntity() when $default != null:
-return $default(_that);case _:
+  @optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserEntity value)? $default,){
+  final _that = this;
+  switch (_that) {
+  case _UserEntity() when $default != null:
+  return $default(_that);case _:
   return null;
 
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
+  }
+  }
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? email,  String? displayName,  String? avatarUrl)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _UserEntity() when $default != null:
-return $default(_that.id,_that.email,_that.displayName,_that.avatarUrl);case _:
+  @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, String? email, String? displayName, String? avatarUrl)? $default,{required TResult orElse(),}) {final _that = this;
+  switch (_that) {
+  case _UserEntity() when $default != null:
+  return $default(_that.id,_that.email,_that.displayName,_that.avatarUrl);case _:
   return orElse();
 
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
+  }
+  }
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? email,  String? displayName,  String? avatarUrl)  $default,) {final _that = this;
-switch (_that) {
-case _UserEntity():
-return $default(_that.id,_that.email,_that.displayName,_that.avatarUrl);}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
+  @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, String? email, String? displayName, String? avatarUrl) $default,) {final _that = this;
+  switch (_that) {
+  case _UserEntity():
+  return $default(_that.id,_that.email,_that.displayName,_that.avatarUrl);}
+  }
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? email,  String? displayName,  String? avatarUrl)?  $default,) {final _that = this;
-switch (_that) {
-case _UserEntity() when $default != null:
-return $default(_that.id,_that.email,_that.displayName,_that.avatarUrl);case _:
+  @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, String? email, String? displayName, String? avatarUrl)? $default,) {final _that = this;
+  switch (_that) {
+  case _UserEntity() when $default != null:
+  return $default(_that.id,_that.email,_that.displayName,_that.avatarUrl);case _:
   return null;
 
-}
-}
+  }
+  }
 
 }
 
 /// @nodoc
 @JsonSerializable()
-
 class _UserEntity extends UserEntity {
-  const _UserEntity({required this.id, this.email, this.displayName, this.avatarUrl}): super._();
+  const _UserEntity({required this.id, this.email, this.displayName, this.avatarUrl}) : super._();
+
   factory _UserEntity.fromJson(Map<String, dynamic> json) => _$UserEntityFromJson(json);
 
-@override final  String id;
-@override final  String? email;
-@override final  String? displayName;
-@override final  String? avatarUrl;
+  @override final String id;
+  @override final String? email;
+  @override final String? displayName;
+  @override final String? avatarUrl;
 
-/// Create a copy of UserEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$UserEntityCopyWith<_UserEntity> get copyWith => __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
+  /// Create a copy of UserEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UserEntityCopyWith<_UserEntity> get copyWith => __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$UserEntityToJson(this, );
-}
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UserEntityToJson(this,);
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserEntity&&super == other&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl));
-}
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _UserEntity && super == other && (identical(other.id, id) || other.id == id) &&
+        (identical(other.email, email) || other.email == email) && (identical(other.displayName, displayName) || other.displayName == displayName) &&
+        (identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl));
+  }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,super.hashCode,id,email,displayName,avatarUrl);
-
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, super.hashCode, id, email, displayName, avatarUrl);
 
 
 }
@@ -237,15 +263,16 @@ int get hashCode => Object.hash(runtimeType,super.hashCode,id,email,displayName,
 /// @nodoc
 abstract mixin class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
   factory _$UserEntityCopyWith(_UserEntity value, $Res Function(_UserEntity) _then) = __$UserEntityCopyWithImpl;
-@override @useResult
-$Res call({
- String id, String? email, String? displayName, String? avatarUrl
-});
 
-
+  @override
+  @useResult
+  $Res call({
+    String id, String? email, String? displayName, String? avatarUrl
+  });
 
 
 }
+
 /// @nodoc
 class __$UserEntityCopyWithImpl<$Res>
     implements _$UserEntityCopyWith<$Res> {
@@ -254,17 +281,19 @@ class __$UserEntityCopyWithImpl<$Res>
   final _UserEntity _self;
   final $Res Function(_UserEntity) _then;
 
-/// Create a copy of UserEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? email = freezed,Object? displayName = freezed,Object? avatarUrl = freezed,}) {
-  return _then(_UserEntity(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,displayName: freezed == displayName ? _self.displayName : displayName // ignore: cast_nullable_to_non_nullable
-as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
+  /// Create a copy of UserEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({Object? id = null, Object? email = freezed, Object? displayName = freezed, Object? avatarUrl = freezed,}) {
+    return _then(_UserEntity(
+      id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+      as String, email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+    as String?, displayName: freezed == displayName ? _self.displayName : displayName // ignore: cast_nullable_to_non_nullable
+    as String?, avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+    as String?,
+    ));
+  }
 
 
 }

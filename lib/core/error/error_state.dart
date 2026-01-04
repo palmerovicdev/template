@@ -117,9 +117,9 @@ final class DataClientError<T> extends ErrorState<T> {
     StackTrace? stackTrace,
     super.errorMessage,
   }) : super(
-          clientError: error,
-          stackTrace: stackTrace,
-        ) {
+         clientError: error,
+         stackTrace: stackTrace,
+       ) {
     logError(
       'DataClientError: client error captured!',
       error: error,
@@ -135,10 +135,10 @@ final class DataNetworkError<T> extends ErrorState<T> {
     StackTrace? stackTrace,
     String? errorMessage,
   }) : super(
-          networkError: error,
-          stackTrace: stackTrace,
-          errorMessage: errorMessage,
-        ) {
+         networkError: error,
+         stackTrace: stackTrace,
+         errorMessage: errorMessage,
+       ) {
     logError(
       'DataNetworkError: ${error.name}',
       error: errorMessage ?? error.toString(),
@@ -157,13 +157,13 @@ final class DataHttpError<T> extends ErrorState<T> {
     StackTrace? stackTrace,
     String? errorMessage,
   }) : super(
-          httpError: error,
-          statusCode: statusCode,
-          statusText: statusText,
-          responseBody: responseBody,
-          stackTrace: stackTrace,
-          errorMessage: errorMessage,
-        ) {
+         httpError: error,
+         statusCode: statusCode,
+         statusText: statusText,
+         responseBody: responseBody,
+         stackTrace: stackTrace,
+         errorMessage: errorMessage,
+       ) {
     logError(
       'DataHttpError: ${error.name} (${statusCode ?? "N/A"})',
       error: 'Status: ${statusText ?? "N/A"}\n${errorMessage ?? ""}\nResponse: ${responseBody?.substring(0, responseBody.length > 100 ? 100 : responseBody.length) ?? "N/A"}',
@@ -180,10 +180,10 @@ final class DataParseError<T> extends ErrorState<T> {
     String? responseBody,
     super.errorMessage,
   }) : super(
-          parseError: error,
-          stackTrace: stackTrace,
-          responseBody: responseBody,
-        ) {
+         parseError: error,
+         stackTrace: stackTrace,
+         responseBody: responseBody,
+       ) {
     logError(
       'DataParseError: Unable to parse the data!',
       error: 'Error: ${error.toString()}\nResponse preview: ${responseBody ?? "N/A"}',

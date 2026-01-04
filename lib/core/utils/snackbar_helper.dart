@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:template/i18n/strings.g.dart';
 
 class SnackbarHelper {
-  static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
+  static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   static void showSuccess({
     required String title,
