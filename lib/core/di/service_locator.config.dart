@@ -16,6 +16,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import '../../features/auth/data/repository/auth_repository_impl.dart' as _i409;
 import '../../features/auth/domain/repository/auth_repository.dart' as _i961;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
+import '../env/env.dart' as _i879;
 import '../theme/bloc/theme_bloc.dart' as _i279;
 import '../theme/data/repository/theme_repository_impl.dart' as _i671;
 import '../theme/domain/repository/theme_repository.dart' as _i909;
@@ -29,6 +30,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final storageModule = _$StorageModule();
+    gh.factory<_i879.Env>(() => _i879.Env());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => storageModule.secureStorage,
     );

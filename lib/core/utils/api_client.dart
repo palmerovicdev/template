@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart' as dio_lib show BaseOptions, CancelToken, Dio, FormData, InterceptorsWrapper, ResponseType;
 import 'package:template/core/di/service_locator.dart';
+import 'package:template/core/env/env.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/logger.dart';
 
@@ -28,7 +29,7 @@ class DioClient {
     if (_cachedToken != null) {
       return _cachedToken;
     }
-    return await sl<StorageModule>().secureStorage.read(key: 'token'); //TODO 1/3/26 palmerodev : must change this
+    return await sl<StorageModule>().secureStorage.read(key: sl<Env>().keyToken);
   }
 
   static bool _requiresToken(String path) {
@@ -100,7 +101,7 @@ class DioClient {
   }
 
   static Future<void> updateToken(String token) async {
-    await sl<StorageModule>().secureStorage.write(key: 'token', value: token); //TODO 1/3/26 palmerodev : must change this
+    await sl<StorageModule>().secureStorage.write(key: sl<Env>().keyToken, value: token);
     _cachedToken = token;
   }
 }
