@@ -57,7 +57,7 @@ android {
             dimension "app"
             applicationIdSuffix = ""
             versionNameSuffix = ""
-            resValue("string", "app_name", "Template")
+            resValue("string", "app_name", "Template Prod")
         }
     }
 }

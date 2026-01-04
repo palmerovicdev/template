@@ -10,7 +10,7 @@ part 'gen/env.g.dart';
 final class Env {
   factory Env() => _instance;
 
-  static final Env _instance = switch (EnvEnum.fromString(const String.fromEnvironment('ENV'))) {
+  static final Env _instance = switch (EnvEnum.fromString(const String.fromEnvironment('FLAVOR'))) {
     EnvEnum.prod => _Prod(),
     EnvEnum.staging => _Staging(),
     EnvEnum.dev => _Dev(),
