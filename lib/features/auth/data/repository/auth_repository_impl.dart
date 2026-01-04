@@ -9,11 +9,21 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl();
 
   @override
-  Future<Either<ErrorState, UserEntity>> signIn() async {
+  Future<Either<ErrorState, UserEntity>> signIn({
+    required String email,
+    required String password,
+  }) async {
     try {
+      // TODO: Implementar autenticación real con email y password
+      // Por ahora, simulamos un login exitoso
       final user = await Future.delayed(
         const Duration(milliseconds: 300),
-        () => const UserEntity(id: '123', email: 'test@example.com', displayName: 'Test User', avatarUrl: 'https://example.com/avatar.jpg'),
+        () => UserEntity(
+          id: '123',
+          email: email,
+          displayName: 'Test User',
+          avatarUrl: 'https://example.com/avatar.jpg',
+        ),
       );
       return Right(user);
     } on Exception catch (e, _) {

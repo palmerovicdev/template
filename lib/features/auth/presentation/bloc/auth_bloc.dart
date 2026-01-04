@@ -21,7 +21,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(state.copyWith(status: AuthStatus.loading, errorMessage: null));
 
-    final result = await authRepository.signIn();
+    final result = await authRepository.signIn(
+      email: event.email,
+      password: event.password,
+    );
     result.fold(
       (failure) => emit(state.copyWith(status: AuthStatus.failure, errorMessage: failure.errorMessage)),
       (user) => emit(state.copyWith(status: AuthStatus.authenticated, user: user)),

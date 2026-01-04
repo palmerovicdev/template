@@ -3,7 +3,10 @@ import 'package:template/core/error/error_handler.dart';
 import 'package:template/features/auth/domain/entity/user_entity.dart';
 
 abstract class AuthRepository {
-  Future<Either<ErrorState, UserEntity>> signIn();
+  Future<Either<ErrorState, UserEntity>> signIn({
+    required String email,
+    required String password,
+  });
 
   Future<Either<ErrorState, UserEntity?>> getCurrentUser();
 
