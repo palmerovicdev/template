@@ -17,14 +17,14 @@ class Header extends StatelessWidget {
           width: double.infinity,
           height: 120,
           decoration: BoxDecoration(
-            color: AppColors.light.text,
+            color: AppColors.dark.bg,
           ),
           child: Column(
             children: [
               Icon(
                 Iconic.user,
                 size: 80,
-                color: AppColors.light.bgLight,
+                color: AppColors.light.bg,
               ),
               const Gap(16),
             ],

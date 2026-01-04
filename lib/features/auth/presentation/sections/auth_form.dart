@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconic/iconic.dart';
 import 'package:template/core/di/service_locator.dart';
+import 'package:template/core/theme/app_colors.dart';
 import 'package:template/core/theme/app_constants.dart';
 import 'package:template/core/widgets/input_form_field.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
@@ -103,6 +104,7 @@ class _AuthFormState extends State<AuthForm> {
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontSize: 18,
                           letterSpacing: 0.5,
+                          color: AppColors.light.text,
                         ),
                       ),
                     ],

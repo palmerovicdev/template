@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color primary = const HSLColor.fromAHSL(1, 212, 0.77, 0.72).toColor();
+  static Color primary = const HSLColor.fromAHSL(1, 212, 0.77, 0.78).toColor();
   static Color secondary = const HSLColor.fromAHSL(1, 34, 0.60, 0.63).toColor();
 
   static Color danger = const HSLColor.fromAHSL(1, 359, 0.25, 0.05).toColor();

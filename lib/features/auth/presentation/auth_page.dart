@@ -25,7 +25,9 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(backgroundColor: AppColors.light.text),
+      appBar: AppBar(
+        backgroundColor: AppColors.dark.bg,
+      ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           switch (state.status) {

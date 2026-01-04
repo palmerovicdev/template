@@ -10,7 +10,7 @@ class AppTheme {
     colorScheme: ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
-      surface: AppColors.light.bg,
+      surface: AppColors.light.bgDark,
       onSurface: AppColors.light.text,
       onSurfaceVariant: AppColors.light.textMuted,
       primaryContainer: AppColors.light.bg,
@@ -91,18 +91,18 @@ class AppTheme {
     colorScheme: ColorScheme.dark(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
-      surface: AppColors.dark.bg,
+      surface: AppColors.dark.bgDark,
       onSurface: AppColors.dark.text,
       onSurfaceVariant: AppColors.dark.textMuted,
       primaryContainer: AppColors.dark.bg,
       onPrimaryContainer: AppColors.dark.text,
       outline: AppColors.dark.border,
-      shadow: Colors.black,
+      shadow: Colors.black.withAlpha(10),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.primary,
       foregroundColor: AppColors.dark.text,
-      titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.dark.text),
+      titleTextStyle: TextStyle(fontSize: AppConstants.remX2, fontWeight: FontWeight.bold, color: AppColors.dark.text),
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: AppColors.dark.text),
@@ -113,40 +113,54 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.dark.text,
-        textStyle: TextStyle(color: AppColors.dark.text, fontWeight: FontWeight.bold),
-        iconColor: AppColors.dark.text,
+        foregroundColor: AppColors.light.text,
+        textStyle: TextStyle(color: AppColors.light.text),
+        iconColor: AppColors.light.text,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppConstants.remX15),
         ),
+      ),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.dark.text,
+      selectionColor: AppColors.dark.borderMuted.withAlpha(50),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.dark.bg,
+      contentPadding: const EdgeInsets.symmetric(horizontal: AppConstants.remX15, vertical: AppConstants.remX15),
+      isDense: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppConstants.remX15),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppConstants.remX15),
+        borderSide: BorderSide.none,
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppConstants.remX15),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppConstants.remX15),
+        borderSide: BorderSide.none,
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppConstants.remX15),
+        borderSide: const BorderSide(color: Colors.red),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppConstants.remX15),
+        borderSide: const BorderSide(color: Colors.red),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: AppColors.dark.textMuted,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppConstants.remX15),
         ),
-      ),
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: AppColors.dark.bg,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: AppColors.dark.borderMuted),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: AppColors.dark.borderMuted),
-      ),
-      disabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: AppColors.dark.borderMuted),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: AppColors.dark.borderMuted),
       ),
     ),
   );
