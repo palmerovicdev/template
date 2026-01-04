@@ -26,7 +26,6 @@ class SplashPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: .center,
             children: [
-              // Logo
               Icon(
                 Icons.flash_on_rounded,
                 size: 64,
@@ -34,7 +33,6 @@ class SplashPage extends StatelessWidget {
               ),
               SizedBox(height: 24),
 
-              // App name
               Text(
                 'Template',
                 style: TextStyle(
@@ -45,7 +43,6 @@ class SplashPage extends StatelessWidget {
               ),
               SizedBox(height: 48),
 
-              // Loading indicator
               SizedBox(
                 width: 32,
                 height: 32,
