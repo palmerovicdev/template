@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:template/core/router/go_router.dart';
 import 'package:template/features/auth/domain/repository/auth_repository.dart';
 import 'package:template/features/auth/presentation/bloc/auth_event.dart';
 import 'package:template/features/auth/presentation/bloc/auth_state.dart';
@@ -25,6 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (failure) => emit(state.copyWith(status: AuthStatus.failure, errorMessage: failure.errorMessage)),
       (user) => emit(state.copyWith(status: AuthStatus.authenticated, user: user)),
     );
+    authStateNotifier.value = state.copyWith(status: AuthStatus.authenticated, user: state.user);
   }
 
   Future<void> _onGetCurrentUser(
@@ -57,5 +59,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (failure) => emit(state.copyWith(status: AuthStatus.failure, errorMessage: failure.errorMessage)),
       (_) => emit(AuthState.initial().copyWith(status: AuthStatus.logout)),
     );
+    authStateNotifier.value = AuthState.initial().copyWith(status: AuthStatus.logout);
   }
 }

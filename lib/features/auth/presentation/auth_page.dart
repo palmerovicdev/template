@@ -18,10 +18,6 @@ class AuthPage extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state.status == .unauthenticated || state.status == .authenticated) {
-            authStateNotifier.value = state;
-          }
-
           switch (state.status) {
             case .failure:
               if (state.errorMessage != null) {

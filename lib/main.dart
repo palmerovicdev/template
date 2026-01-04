@@ -7,6 +7,7 @@ import 'package:template/core/router/go_router.dart';
 import 'package:template/core/theme/app_theme.dart';
 import 'package:template/core/theme/bloc/theme_bloc.dart';
 import 'package:template/core/theme/bloc/theme_state.dart';
+import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/i18n/strings.g.dart';
 
 void main() async {
@@ -26,6 +27,7 @@ class App extends StatelessWidget {
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, themeState) {
           return MaterialApp.router(
+            scaffoldMessengerKey: SnackbarHelper.scaffoldMessengerKey,
             locale: TranslationProvider.of(context).flutterLocale,
             supportedLocales: AppLocaleUtils.supportedLocales,
             localizationsDelegates: GlobalMaterialLocalizations.delegates,

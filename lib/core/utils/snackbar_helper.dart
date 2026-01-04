@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:template/i18n/strings.g.dart';
 
 class SnackbarHelper {
   static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -95,57 +94,53 @@ class SnackbarHelper {
     final txtColor = textColor ?? Colors.white;
 
     final messengerState = scaffoldMessengerKey.currentState;
-    if (messengerState != null) {
-      messengerState
-        ..clearSnackBars()
-        ..showSnackBar(
-          SnackBar(
-            content: Row(
-              children: [
-                if (icon != null) ...[
-                  Icon(icon, color: txtColor, size: 24),
-                  const SizedBox(width: 10),
-                ],
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          color: txtColor,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        message,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: txtColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+    if (messengerState == null) return;
+
+    messengerState
+      ..clearSnackBars()
+      ..showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              if (icon != null) ...[
+                Icon(icon, color: txtColor, size: 24),
+                const SizedBox(width: 10),
               ],
-            ),
-            backgroundColor: bgColor,
-            duration: durationValue,
-            behavior: SnackBarBehavior.floating,
-            margin: const EdgeInsets.all(14),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            action: SnackBarAction(
-              label: t.ok,
-              textColor: txtColor.withOpacity(0.85),
-              onPressed: messengerState.hideCurrentSnackBar,
-            ),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: txtColor,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      message,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: txtColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        );
-    }
+          backgroundColor: bgColor,
+          duration: durationValue,
+          dismissDirection: DismissDirection.horizontal,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
   }
 }

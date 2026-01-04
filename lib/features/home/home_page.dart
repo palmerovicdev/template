@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/theme/bloc/theme_bloc.dart';
 import 'package:template/core/theme/bloc/theme_event.dart';
@@ -86,7 +87,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             onPressed: () {
               final newMode = isDark ? AppThemeMode.light : AppThemeMode.dark;
-              context.read<ThemeBloc>().add(ChangeTheme(newMode));
+              sl<ThemeBloc>().add(ChangeTheme(newMode));
             },
             icon: Icon(isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded),
             tooltip: isDark ? 'Light Mode' : 'Dark Mode',
@@ -161,7 +162,7 @@ class HomePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop();
-              context.read<AuthBloc>().add(SignOutEvent());
+              sl<AuthBloc>().add(SignOutEvent());
               SnackbarHelper.showSuccess(
                 title: t.logout_success,
                 message: t.logout_success_message,
