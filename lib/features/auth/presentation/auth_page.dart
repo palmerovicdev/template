@@ -19,32 +19,36 @@ class AuthPage extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state.status == .failure && state.errorMessage != null) {
-            SnackbarHelper.showError(
-              title: t.error_message,
-              message: state.errorMessage!,
-            );
-          }
-
-          if (state.status == .authenticated) {
-            SnackbarHelper.showSuccess(
-              title: t.auth_success,
-              message: t.auth_success,
-            );
-            context.go(Routes.home.path);
+          switch (state.status) {
+            case .failure:
+              if (state.errorMessage != null) {
+                SnackbarHelper.showError(
+                  title: t.error_message,
+                  message: state.errorMessage!,
+                );
+              }
+              break;
+            case .authenticated:
+              SnackbarHelper.showSuccess(
+                title: t.auth_success,
+                message: t.auth_success,
+              );
+              context.go(Routes.home.path);
+              break;
+            case .initial:
+            case .loading:
+            case .unauthenticated:
+            case .logout:
           }
         },
-        builder: (context, state) {
-          if (state.status == .loading) {
-            return const Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                strokeWidth: 3,
-              ),
-            );
-          }
-
-          return SafeArea(
+        builder: (context, state) => switch (state.status) {
+          .loading => const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              strokeWidth: 3,
+            ),
+          ),
+          _ => SafeArea(
             child: Center(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(32.0),
@@ -125,7 +129,7 @@ class AuthPage extends StatelessWidget {
                 ),
               ),
             ),
-          );
+          ),
         },
       ),
     );
