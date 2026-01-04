@@ -16,15 +16,15 @@ class SplashPage extends StatelessWidget {
       backgroundColor: colorScheme.primary,
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state.status == AuthStatus.authenticated) {
+          if (state.status == .authenticated) {
             context.go(Routes.home.path);
-          } else if (state.status == AuthStatus.unauthenticated) {
+          } else if (state.status == .unauthenticated) {
             context.go(Routes.login.path);
           }
         },
         child: const Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: .center,
             children: [
               // Logo
               Icon(
@@ -39,7 +39,7 @@ class SplashPage extends StatelessWidget {
                 'Template',
                 style: TextStyle(
                   fontSize: 32,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: .bold,
                   color: Colors.white,
                 ),
               ),

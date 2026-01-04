@@ -7,7 +7,6 @@ import 'package:template/core/router/go_router.dart';
 import 'package:template/core/theme/app_theme.dart';
 import 'package:template/core/theme/bloc/theme_bloc.dart';
 import 'package:template/core/theme/bloc/theme_state.dart';
-import 'package:template/core/theme/domain/entity/app_theme_mode.dart';
 import 'package:template/i18n/strings.g.dart';
 
 void main() async {
@@ -35,7 +34,7 @@ class App extends StatelessWidget {
             routerConfig: router,
             darkTheme: AppTheme.darkTheme,
             theme: AppTheme.lightTheme,
-            themeMode: themeState.themeMode == AppThemeMode.dark ? ThemeMode.dark : ThemeMode.light,
+            themeMode: themeState.themeMode == .dark ? .dark : .light,
           );
         },
       ),

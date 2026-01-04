@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: .start,
                   children: [
                     _buildWelcomeSection(context, colorScheme, theme),
                   ],
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildAppBar(BuildContext context, ColorScheme colorScheme, ThemeData theme) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = Theme.of(context).brightness == .dark;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       child: Row(
@@ -64,12 +64,12 @@ class HomePage extends StatelessWidget {
           // Title
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 Text(
                   'Template App',
                   style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: .bold,
                   ),
                 ),
                 Text(
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: .start,
         children: [
           Container(
             padding: const EdgeInsets.all(12),
@@ -129,7 +129,7 @@ class HomePage extends StatelessWidget {
             t.good_morning,
             style: theme.textTheme.titleLarge?.copyWith(
               fontSize: 24,
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
             ),
           ),
           const SizedBox(height: 8),

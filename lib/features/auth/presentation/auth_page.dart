@@ -19,14 +19,14 @@ class AuthPage extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state.status == AuthStatus.failure && state.errorMessage != null) {
+          if (state.status == .failure && state.errorMessage != null) {
             SnackbarHelper.showError(
               title: t.error_message,
               message: state.errorMessage!,
             );
           }
 
-          if (state.status == AuthStatus.authenticated) {
+          if (state.status == .authenticated) {
             SnackbarHelper.showSuccess(
               title: t.auth_success,
               message: t.auth_success,
@@ -35,7 +35,7 @@ class AuthPage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if (state.status == AuthStatus.loading) {
+          if (state.status == .loading) {
             return const Center(
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -49,7 +49,7 @@ class AuthPage extends StatelessWidget {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(32.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: .center,
                   children: [
                     Container(
                       width: 100,
@@ -69,7 +69,7 @@ class AuthPage extends StatelessWidget {
                       t.auth_title,
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontSize: 32,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: .bold,
                         letterSpacing: -0.5,
                       ),
                       textAlign: TextAlign.center,
@@ -94,7 +94,7 @@ class AuthPage extends StatelessWidget {
                           context.read<AuthBloc>().add(SignInEvent());
                         },
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: .center,
                           children: [
                             const Icon(Icons.login, size: 24),
                             const SizedBox(width: 12),
@@ -102,7 +102,7 @@ class AuthPage extends StatelessWidget {
                               t.sign_in,
                               style: theme.textTheme.titleMedium?.copyWith(
                                 fontSize: 18,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: .w600,
                                 letterSpacing: 0.5,
                               ),
                             ),
@@ -114,7 +114,7 @@ class AuthPage extends StatelessWidget {
                     const SizedBox(height: 24),
 
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: .spaceEvenly,
                       children: [
                         _buildFeature(context, Icons.security_rounded, 'Secure'),
                         _buildFeature(context, Icons.speed_rounded, 'Fast'),
@@ -143,7 +143,7 @@ class AuthPage extends StatelessWidget {
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             fontSize: 12,
-            fontWeight: FontWeight.w500,
+            fontWeight: .w500,
           ),
         ),
       ],
