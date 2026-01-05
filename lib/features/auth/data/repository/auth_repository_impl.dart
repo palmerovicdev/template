@@ -53,4 +53,22 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(DataClientError(e));
     }
   }
+
+  @override
+  Future<Either<ErrorState<dynamic>, UserEntity>> signUp({required String email, required String password, required String name}) async {
+    try {
+      final user = await Future.delayed(
+        const Duration(milliseconds: 300),
+        () => UserEntity(
+          id: '456',
+          email: email,
+          displayName: name,
+          avatarUrl: 'https://example.com/avatar.jpg',
+        ),
+      );
+      return Right(user);
+    } on Exception catch (e, _) {
+      return Left(DataClientError(e));
+    }
+  }
 }

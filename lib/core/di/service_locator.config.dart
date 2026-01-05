@@ -37,11 +37,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => storageModule.secureStorage,
     );
-    gh.lazySingleton<_i648.SignUpBloc>(() => _i648.SignUpBloc());
     gh.lazySingleton<_i961.AuthRepository>(() => _i409.AuthRepositoryImpl());
     gh.lazySingleton<_i909.ThemeRepository>(() => _i671.ThemeRepositoryImpl());
     gh.lazySingleton<_i727.SignInBloc>(
       () => _i727.SignInBloc(gh<_i961.AuthRepository>()),
+    );
+    gh.lazySingleton<_i648.SignUpBloc>(
+      () => _i648.SignUpBloc(gh<_i961.AuthRepository>()),
     );
     gh.lazySingleton<_i279.ThemeBloc>(
       () => _i279.ThemeBloc(gh<_i909.ThemeRepository>()),
