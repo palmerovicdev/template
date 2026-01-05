@@ -55,7 +55,7 @@ class _AuthPageState extends State<AuthPage> {
             child: Column(
               mainAxisAlignment: .spaceBetween,
               children: [
-                Header(),
+                AuthHeader(),
                 Gap(48),
                 AuthForm(),
                 AuthToggle(),

@@ -4,8 +4,8 @@ import 'package:iconic/iconic.dart';
 import 'package:template/core/theme/app_colors.dart';
 import 'package:template/i18n/strings.g.dart';
 
-class Header extends StatelessWidget {
-  const Header({super.key});
+class AuthHeader extends StatelessWidget {
+  const AuthHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
