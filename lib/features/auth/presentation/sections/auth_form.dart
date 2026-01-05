@@ -17,12 +17,26 @@ class AuthForm extends StatefulWidget {
 }
 
 class _AuthFormState extends State<AuthForm> {
-  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isEmailValid = false;
+  bool _isPasswordValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
 
   void _handleSignIn() {
-    if (_formKey.currentState!.validate()) {
+    if (_isEmailValid && _isPasswordValid) {
       sl<AuthBloc>().add(
         SignInEvent(
           email: _emailController.text.trim(),
@@ -31,68 +45,74 @@ class _AuthFormState extends State<AuthForm> {
       );
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: .end,
-          children: [
-            InputFormField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return t.email_required;
-                }
-                if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-                  return t.email_invalid;
-                }
-                return null;
-              },
-              hintText: t.email_hint,
-              prefixIcon: Icons.email_outlined,
+      child: Column(
+        crossAxisAlignment: .end,
+        children: [
+          InputFormField(
+            controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
+            isValid: (value) {
+              if (value == null || value.isEmpty) {
+                setState(() => _isEmailValid = false);
+                return false;
+              }
+              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                setState(() => _isEmailValid = false);
+                return false;
+              }
+              setState(() => _isEmailValid = true);
+              return true;
+            },
+            hintText: t.email_hint,
+            prefixIcon: Icons.email_outlined,
+          ),
+          const Gap(16),
+          InputFormField(
+            controller: _passwordController,
+            keyboardType: TextInputType.visiblePassword,
+            hintText: t.password_hint,
+            prefixIcon: Icons.lock_outlined,
+            isPassword: true,
+            isValid: (value) {
+              if (value == null || value.isEmpty) {
+                setState(() => _isPasswordValid = false);
+                return false;
+              }
+              if (value.length < 6) {
+                setState(() => _isPasswordValid = false);
+                return false;
+              }
+              setState(() => _isPasswordValid = true);
+              return true;
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(visualDensity: VisualDensity.compact),
+            onPressed: () {},
+            child: Text(t.forgot_password),
+          ),
+          const Gap(32),
+          CustomButton(
+            text: t.sign_in,
+            enabled: _isEmailValid && _isPasswordValid,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontSize: 18,
+              letterSpacing: 0.5,
+              color: AppColors.light.text,
             ),
-            const Gap(16),
-            InputFormField(
-              controller: _passwordController,
-              keyboardType: TextInputType.visiblePassword,
-              hintText: t.password_hint,
-              prefixIcon: Icons.lock_outlined,
-              isPassword: true,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return t.password_required;
-                }
-                if (value.length < 6) {
-                  return t.password_too_short;
-                }
-                return null;
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(visualDensity: VisualDensity.compact),
-              onPressed: () {},
-              child: Text(t.forgot_password),
-            ),
-            const Gap(32),
-            CustomButton(
-              text: t.sign_in,
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontSize: 18,
-                letterSpacing: 0.5,
-                color: AppColors.light.text,
-              ),
-              onPressed: _handleSignIn,
-              icon: Iconic.sign_in_alt,
-            ),
-          ],
-        ),
+            onPressed: () {
+              _handleSignIn();
+            },
+            icon: Iconic.sign_in_alt,
+          ),
+        ],
       ),
     );
   }

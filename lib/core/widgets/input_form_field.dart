@@ -7,7 +7,7 @@ class InputFormField extends StatefulWidget {
     super.key,
     required this.hintText,
     required this.prefixIcon,
-    this.validator,
+    required this.isValid,
     this.controller,
     this.keyboardType,
     this.isPassword = false,
@@ -15,7 +15,7 @@ class InputFormField extends StatefulWidget {
 
   final String hintText;
   final IconData prefixIcon;
-  final String? Function(String?)? validator;
+  final bool Function(String?) isValid;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final bool isPassword;
@@ -26,7 +26,7 @@ class InputFormField extends StatefulWidget {
 
 class _InputFormFieldState extends State<InputFormField> {
   bool isError = false;
-  bool obscureText = true;
+  bool obscureText = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +51,9 @@ class _InputFormFieldState extends State<InputFormField> {
           obscureText: widget.isPassword ? obscureText : false,
           textInputAction: TextInputAction.next,
           onChanged: (value) {
-            if (widget.validator != null) {
-              setState(() {
-                isError = widget.validator?.call(value) != null;
-              });
-            }
+            setState(() {
+              isError = !widget.isValid(value);
+            });
           },
           decoration: InputDecoration(
             error: isError ? const SizedBox.shrink() : null,

@@ -9,12 +9,14 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.style,
     required this.onPressed,
+    required this.enabled,
   });
 
   final IconData? icon;
   final String text;
   final TextStyle? style;
   final VoidCallback onPressed;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       height: AppConstants.componentHeight,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: enabled ? onPressed : null,
         child: Row(
           mainAxisAlignment: .center,
           children: [
