@@ -46,7 +46,7 @@ class StringsEs extends Strings with BaseTranslations<AppLocale, Strings> {
   @override
   String get auth_subtitle => 'Inicia sesión con tu email y contraseña';
   @override
-  String get sign_in => 'Iniciar sesión';
+  String get sign_in => 'Iniciar Sesión';
   @override
   String get auth_success => 'Has iniciado sesión con éxito';
   @override
@@ -127,4 +127,12 @@ class StringsEs extends Strings with BaseTranslations<AppLocale, Strings> {
   String get dont_have_an_account => '¿No tienes una cuenta?';
   @override
   String get sign_up => 'Regístrate';
+  @override
+  String get name => 'Nombre';
+  @override
+  String get name_hint => 'Nombre';
+  @override
+  String get repeat_password_hint => 'Repetir contraseña';
+  @override
+  String get already_have_an_account => 'Ya tienes una cuenta?';
 }

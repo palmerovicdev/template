@@ -58,10 +58,10 @@ class Strings with BaseTranslations<AppLocale, Strings> {
   /// es: 'Inicia sesión con tu email y contraseña'
   String get auth_subtitle => 'Sign in with your email and password';
 
-  /// en: 'Sign in'
+  /// en: 'Sign In'
   ///
-  /// es: 'Iniciar sesión'
-  String get sign_in => 'Sign in';
+  /// es: 'Iniciar Sesión'
+  String get sign_in => 'Sign In';
 
   /// en: 'You have successfully signed in'
   ///
@@ -258,8 +258,28 @@ class Strings with BaseTranslations<AppLocale, Strings> {
   /// es: '¿No tienes una cuenta?'
   String get dont_have_an_account => 'Don\'t have an account?';
 
-  /// en: 'Sign up'
+  /// en: 'Sign Up'
   ///
   /// es: 'Regístrate'
-  String get sign_up => 'Sign up';
+  String get sign_up => 'Sign Up';
+
+  /// en: 'Name'
+  ///
+  /// es: 'Nombre'
+  String get name => 'Name';
+
+  /// en: 'Name'
+  ///
+  /// es: 'Nombre'
+  String get name_hint => 'Name';
+
+  /// en: 'Repeat password'
+  ///
+  /// es: 'Repetir contraseña'
+  String get repeat_password_hint => 'Repeat password';
+
+  /// en: 'Already have an account?'
+  ///
+  /// es: 'Ya tienes una cuenta?'
+  String get already_have_an_account => 'Already have an account?';
 }

@@ -2,7 +2,7 @@
   "error_message": "An error occurred",
   "auth_title": "Welcome to Template",
   "auth_subtitle": "Sign in with your email and password",
-  "sign_in": "Sign in",
+  "sign_in": "Sign In",
   "auth_success": "You have successfully signed in",
   "email_hint": "Email",
   "email_required": "Please enter your email",
@@ -42,5 +42,9 @@
   "logout_success_message": "You have been logged out successfully.",
   "forgot_password": "Forgot password?",
   "dont_have_an_account": "Don't have an account?",
-  "sign_up": "Sign up"
+  "sign_up": "Sign Up",
+  "name" : "Name",
+  "name_hint" : "Name",
+  "repeat_password_hint" : "Repeat password",
+  "already_have_an_account" : "Already have an account?"
 }

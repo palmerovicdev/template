@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iconic/iconic.dart';
 import 'package:template/core/theme/app_colors.dart';
 
-class AuthLogo extends StatelessWidget {
-  const AuthLogo({super.key});
+class LoginLogo extends StatelessWidget {
+  const LoginLogo({super.key});
 
   @override
   Widget build(BuildContext context) {

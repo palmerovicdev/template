@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/auth_state.dart';
-import 'package:template/features/auth/presentation/sections/auth_form.dart';
-import 'package:template/features/auth/presentation/sections/auth_logo.dart';
-import 'package:template/features/auth/presentation/sections/auth_title.dart';
+import 'package:template/features/auth/presentation/sections/sign_in/login_form.dart';
+import 'package:template/features/auth/presentation/sections/sign_in/login_logo.dart';
+import 'package:template/features/auth/presentation/sections/sign_in/login_title.dart';
 import 'package:template/i18n/strings.g.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +36,9 @@ class AuthPage extends StatelessWidget {
           ),
           _ => const CustomScrollView(
             slivers: [
-              AuthLogo(),
-              AuthTitle(),
-              AuthForm(),
+              LoginLogo(),
+              LoginTitle(),
+              LoginForm(),
             ],
           ),
         },

@@ -8,8 +8,8 @@ import 'package:template/core/theme/bloc/theme_event.dart';
 import 'package:template/core/theme/domain/entity/app_theme_mode.dart';
 import 'package:template/i18n/strings.g.dart';
 
-class AuthTitle extends StatelessWidget {
-  const AuthTitle({super.key});
+class LoginTitle extends StatelessWidget {
+  const LoginTitle({super.key});
 
   @override
   Widget build(BuildContext context) {

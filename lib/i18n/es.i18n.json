@@ -2,7 +2,7 @@
   "error_message": "Ocurrió un error",
   "auth_title": "Bienvenido a Template",
   "auth_subtitle": "Inicia sesión con tu email y contraseña",
-  "sign_in": "Iniciar sesión",
+  "sign_in": "Iniciar Sesión",
   "auth_success": "Has iniciado sesión con éxito",
   "email_hint": "Email",
   "email_required": "Por favor, ingresa tu email",
@@ -42,5 +42,9 @@
   "logout_success_message": "Has cerrado sesión correctamente.",
   "forgot_password": "¿Olvidaste tu contraseña?",
   "dont_have_an_account": "¿No tienes una cuenta?",
-  "sign_up": "Regístrate"
+  "sign_up": "Regístrate",
+  "name" : "Nombre",
+  "name_hint" : "Nombre",
+  "repeat_password_hint" : "Repetir contraseña",
+  "already_have_an_account" : "Ya tienes una cuenta?"
 }
