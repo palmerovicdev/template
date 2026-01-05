@@ -49,6 +49,7 @@ class _AuthFormState extends State<AuthForm> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -105,7 +106,6 @@ class _AuthFormState extends State<AuthForm> {
             style: theme.textTheme.titleMedium?.copyWith(
               fontSize: 18,
               letterSpacing: 0.5,
-              color: AppColors.light.text,
             ),
             onPressed: () {
               _handleSignIn();

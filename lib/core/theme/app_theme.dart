@@ -17,6 +17,7 @@ class AppTheme {
       onPrimaryContainer: AppColors.light.text,
       outline: AppColors.light.border,
       shadow: Colors.black.withAlpha(10),
+      onPrimary: AppColors.light.text,
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.primary,
@@ -24,6 +25,7 @@ class AppTheme {
       titleTextStyle: TextStyle(fontSize: AppConstants.remX2, fontWeight: FontWeight.bold, color: AppColors.light.text),
     ),
     textTheme: TextTheme(
+      titleMedium: TextStyle(color: AppColors.light.text),
       bodyLarge: TextStyle(color: AppColors.light.text),
       bodyMedium: TextStyle(color: AppColors.light.text),
       bodySmall: TextStyle(color: AppColors.light.text),
@@ -33,8 +35,9 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.light.text,
-        textStyle: TextStyle(color: AppColors.light.text),
+        disabledForegroundColor: AppColors.light.textMuted,
         iconColor: AppColors.light.text,
+        disabledIconColor: AppColors.light.textMuted,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.remX15),
         ),
@@ -98,6 +101,7 @@ class AppTheme {
       onPrimaryContainer: AppColors.dark.text,
       outline: AppColors.dark.border,
       shadow: Colors.black.withAlpha(10),
+      onPrimary: AppColors.dark.text,
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.primary,
@@ -105,6 +109,7 @@ class AppTheme {
       titleTextStyle: TextStyle(fontSize: AppConstants.remX2, fontWeight: FontWeight.bold, color: AppColors.dark.text),
     ),
     textTheme: TextTheme(
+      titleMedium: TextStyle(color: AppColors.dark.text),
       bodyLarge: TextStyle(color: AppColors.dark.text),
       bodyMedium: TextStyle(color: AppColors.dark.text),
       bodySmall: TextStyle(color: AppColors.dark.text),
@@ -114,8 +119,9 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.light.text,
-        textStyle: TextStyle(color: AppColors.light.text),
+        disabledForegroundColor: AppColors.light.textMuted,
         iconColor: AppColors.light.text,
+        disabledIconColor: AppColors.light.textMuted,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.remX15),
         ),

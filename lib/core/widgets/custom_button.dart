@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:template/core/theme/app_constants.dart';
 
 class CustomButton extends StatelessWidget {
@@ -23,19 +22,11 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: AppConstants.componentHeight,
-      child: ElevatedButton(
+      child: ElevatedButton.icon(
+        key: UniqueKey(),
         onPressed: enabled ? onPressed : null,
-        child: Row(
-          mainAxisAlignment: .center,
-          children: [
-            icon != null ? Icon(icon, size: 20) : const SizedBox(),
-            const Gap(12),
-            Text(
-              text,
-              style: style,
-            ),
-          ],
-        ),
+        icon: icon != null ? Icon(icon, size: 20) : const SizedBox(),
+        label: Text(text, style: style),
       ),
     );
   }
