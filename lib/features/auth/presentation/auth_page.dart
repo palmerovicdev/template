@@ -55,7 +55,7 @@ class _AuthPageState extends State<AuthPage> {
               strokeWidth: 3,
             ),
           ),
-          _ => const Center(
+          _ =>  const Center(
             child: Column(
               children: [
                 Header(),

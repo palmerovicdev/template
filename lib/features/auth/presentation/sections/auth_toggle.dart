@@ -11,26 +11,24 @@ class AuthToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return SliverToBoxAdapter(
-      child: SafeArea(
-        child: Text.rich(
-          TextSpan(
-            text: t.dont_have_an_account,
-            children: [
-              TextSpan(
-                text: ' ${t.sign_up}',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  letterSpacing: 0.5,
-                  fontWeight: .bold,
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    logi('Debug');
-                    context.go(Routes.signUp.path);
-                  },
+    return SafeArea(
+      child: Text.rich(
+        TextSpan(
+          text: t.dont_have_an_account,
+          children: [
+            TextSpan(
+              text: ' ${t.sign_up}',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                letterSpacing: 0.5,
+                fontWeight: .bold,
               ),
-            ],
-          ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  logi('Debug');
+                  context.go(Routes.signUp.path);
+                },
+            ),
+          ],
         ),
       ),
     );
