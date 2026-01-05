@@ -4,8 +4,8 @@ import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/logger.dart';
 import 'package:template/features/auth/presentation/login_page.dart';
-import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:template/features/auth/presentation/bloc/auth_state.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_state.dart';
 import 'package:template/features/auth/presentation/sign_up_page.dart';
 import 'package:template/features/home/home_page.dart';
 import 'package:template/features/splash_page.dart';
@@ -19,7 +19,7 @@ var router = GoRouter(
   refreshListenable: authStateNotifier,
   observers: [_GoRouterObserver()],
   redirect: (context, state) {
-    final bloc = sl<AuthBloc>();
+    final bloc = sl<SignInBloc>();
     final isLogin = state.matchedLocation == Routes.login.path;
     final isSignUp = state.matchedLocation == Routes.signUp.path;
     final isAuthenticated = bloc.state.status == .authenticated;

@@ -2,13 +2,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:template/core/router/go_router.dart';
 import 'package:template/features/auth/domain/repository/auth_repository.dart';
-import 'package:template/features/auth/presentation/bloc/auth_event.dart';
-import 'package:template/features/auth/presentation/bloc/auth_state.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_event.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_state.dart';
 
 @lazySingleton
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc(this.authRepository) : super(AuthState.initial()) {
-    on<SignInEvent>(_onSignIn);
+class SignInBloc extends Bloc<SignInEvent, AuthState> {
+  SignInBloc(this.authRepository) : super(AuthState.initial()) {
+    on<SignIn>(_onSignIn);
     on<GetCurrentUserEvent>(_onGetCurrentUser);
     on<SignOutEvent>(_onSignOut);
   }
@@ -16,7 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
   Future<void> _onSignIn(
-    SignInEvent event,
+    SignIn event,
     Emitter<AuthState> emit,
   ) async {
     emit(state.copyWith(status: AuthStatus.loading, errorMessage: null));

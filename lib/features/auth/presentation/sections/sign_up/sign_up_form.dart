@@ -8,7 +8,7 @@ import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/logger.dart';
 import 'package:template/core/widgets/custom_button.dart';
 import 'package:template/core/widgets/input_form_field.dart';
-import 'package:template/features/auth/presentation/bloc/sign_up_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/sign_up/sign_up_bloc.dart';
 import 'package:template/i18n/strings.g.dart';
 
 class SignUpForm extends StatefulWidget {

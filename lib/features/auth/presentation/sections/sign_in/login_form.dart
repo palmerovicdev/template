@@ -8,8 +8,8 @@ import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/logger.dart';
 import 'package:template/core/widgets/custom_button.dart';
 import 'package:template/core/widgets/input_form_field.dart';
-import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:template/features/auth/presentation/bloc/auth_event.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_event.dart';
 import 'package:template/i18n/strings.g.dart';
 
 class LoginForm extends StatefulWidget {
@@ -39,8 +39,8 @@ class _LoginFormState extends State<LoginForm> {
 
   void _handleSignIn() {
     if (_isEmailValid && _isPasswordValid) {
-      sl<AuthBloc>().add(
-        SignInEvent(
+      sl<SignInBloc>().add(
+        SignIn(
           email: _emailController.text.trim(),
           password: _passwordController.text,
         ),

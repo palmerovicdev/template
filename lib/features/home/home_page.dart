@@ -7,8 +7,8 @@ import 'package:template/core/theme/bloc/theme_bloc.dart';
 import 'package:template/core/theme/bloc/theme_event.dart';
 import 'package:template/core/theme/domain/entity/app_theme_mode.dart';
 import 'package:template/core/widgets/custom_button.dart';
-import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:template/features/auth/presentation/bloc/auth_event.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_event.dart';
 import 'package:template/i18n/strings.g.dart';
 
 class HomePage extends StatelessWidget {
@@ -170,7 +170,7 @@ class HomePage extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.of(context).pop();
-              sl<AuthBloc>().add(SignOutEvent());
+              sl<SignInBloc>().add(SignOutEvent());
               context.go(Routes.login.path);
             },
           ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
-import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:template/features/auth/presentation/bloc/auth_state.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_state.dart';
 import 'package:template/features/auth/presentation/sections/sign_in/login_form.dart';
 import 'package:template/features/auth/presentation/sections/sign_in/login_logo.dart';
 import 'package:template/features/auth/presentation/sections/sign_in/login_title.dart';
@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<AuthBloc, AuthState>(
+      body: BlocConsumer<SignInBloc, AuthState>(
         listener: (context, state) {
           switch (state.status) {
             case .failure:

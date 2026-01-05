@@ -1,5 +1,6 @@
 part of 'sign_up_bloc.dart';
 
+
 class SignUpState extends Equatable {
   const SignUpState._({
     required this.status,

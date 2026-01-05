@@ -8,8 +8,8 @@ import 'package:template/core/error/enums.dart';
 import 'package:template/core/utils/api_client.dart';
 import 'package:template/core/utils/logger.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
-import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:template/features/auth/presentation/bloc/auth_event.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_event.dart';
 import 'package:template/i18n/strings.g.dart';
 
 part 'error_state.dart';
@@ -311,7 +311,7 @@ class ErrorHandler {
     SnackbarHelper.showWarning(title: t.session_expired, message: t.session_expired_message);
 
     try {
-      sl<AuthBloc>().add(SignOutEvent());
+      sl<SignInBloc>().add(SignOutEvent());
     } catch (e) {
       logError('Error al cerrar sesión', error: e, tag: 'ErrorHandler');
     } finally {

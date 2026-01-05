@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconic/iconic.dart';
 import 'package:template/core/router/routes.dart';
-import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:template/features/auth/presentation/bloc/auth_state.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_state.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -15,7 +15,7 @@ class SplashPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colorScheme.primary,
-      body: BlocListener<AuthBloc, AuthState>(
+      body: BlocListener<SignInBloc, AuthState>(
         listener: (context, state) {
           if (state.status == .authenticated) {
             context.go(Routes.home.path);
