@@ -19,17 +19,11 @@ class AuthPage extends StatelessWidget {
           switch (state.status) {
             case .failure:
               if (state.errorMessage != null) {
-                SnackbarHelper.showError(
-                  title: t.error_message,
-                  message: state.errorMessage!,
-                );
+                SnackbarHelper.showError(title: t.error_message, message: state.errorMessage!);
               }
               break;
             case .authenticated:
-              SnackbarHelper.showSuccess(
-                title: t.auth_success,
-                message: t.auth_success,
-              );
+              SnackbarHelper.showSuccess(title: t.auth_success, message: t.auth_success);
               break;
             case _:
           }
