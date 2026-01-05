@@ -16,6 +16,7 @@ class ForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
         listener: (context, state) {
@@ -27,7 +28,8 @@ class ForgotPassword extends StatelessWidget {
               break;
             case ForgotPasswordStatus.success:
               if (state.email != null) {
-                context.push(Routes.resetPassword.path, extra: state.email);
+                context.go(Routes.resetPassword.path, extra: state.email);
+                sl<ForgotPasswordBloc>().add(ResetState());
               }
             case _:
           }
@@ -37,10 +39,20 @@ class ForgotPassword extends StatelessWidget {
             slivers: [
               const ForgotPasswordLogo(),
               const ForgotPasswordTitle(),
-              if (state.status == ForgotPasswordStatus.initial)
-                const ForgotPasswordForm(),
-              if (state.status == ForgotPasswordStatus.validateCode)
-                const ForgotPasswordValidateCode(),
+              if (state.status == ForgotPasswordStatus.loading)
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24),
+                  sliver: SliverToBoxAdapter(
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.onSurface),
+                        strokeWidth: 3,
+                      ),
+                    ),
+                  ),
+                ),
+              if (state.status == ForgotPasswordStatus.initial) const ForgotPasswordForm(),
+              if (state.status == ForgotPasswordStatus.validateCode) const ForgotPasswordValidateCode(),
             ],
           );
         },
