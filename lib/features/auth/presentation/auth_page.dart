@@ -36,10 +36,7 @@ class _AuthPageState extends State<AuthPage> {
                 message: t.auth_success,
               );
               break;
-            case .initial:
-            case .loading:
-            case .unauthenticated:
-            case .logout:
+            case _:
           }
         },
         builder: (context, state) => switch (state.status) {
