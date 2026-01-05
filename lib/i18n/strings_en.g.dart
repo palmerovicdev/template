@@ -217,6 +217,24 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	/// en: 'You have successfully verified your email. You can now sign in.'
 	String get otp_success_message => 'You have successfully verified your email. You can now sign in.';
+
+	/// en: 'You have successfully reset your password'
+	String get reset_password_success => 'You have successfully reset your password';
+
+	/// en: 'You have successfully reset your password. You can now sign in.'
+	String get reset_password_success_message => 'You have successfully reset your password. You can now sign in.';
+
+	/// en: 'Reset Password'
+	String get reset_password_title => 'Reset Password';
+
+	/// en: 'Enter your new password'
+	String get reset_password_subtitle => 'Enter your new password';
+
+	/// en: 'Reset Password'
+	String get reset_password => 'Reset Password';
+
+	/// en: 'New Password'
+	String get new_password_hint => 'New Password';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -286,6 +304,12 @@ extension on Translations {
 			'verify_otp' => 'Verify OTP',
 			'otp_success' => 'You have successfully verified your email',
 			'otp_success_message' => 'You have successfully verified your email. You can now sign in.',
+			'reset_password_success' => 'You have successfully reset your password',
+			'reset_password_success_message' => 'You have successfully reset your password. You can now sign in.',
+			'reset_password_title' => 'Reset Password',
+			'reset_password_subtitle' => 'Enter your new password',
+			'reset_password' => 'Reset Password',
+			'new_password_hint' => 'New Password',
 			_ => null,
 		};
 	}

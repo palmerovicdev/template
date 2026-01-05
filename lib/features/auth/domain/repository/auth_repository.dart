@@ -30,4 +30,9 @@ abstract class AuthRepository {
   Future<Either<ErrorState, void>> validatePasswordResetCode({
     required String code,
   });
+
+  Future<Either<ErrorState, void>> resetPassword({
+    required String email,
+    required String newPassword,
+  });
 }

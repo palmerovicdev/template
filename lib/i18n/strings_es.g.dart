@@ -96,6 +96,12 @@ class TranslationsEs with BaseTranslations<AppLocale, Translations> implements T
 	@override String get verify_otp => 'Verificar OTP';
 	@override String get otp_success => 'Has verificado tu email con éxito';
 	@override String get otp_success_message => 'Has verificado tu email con éxito. Ahora puedes iniciar sesión.';
+	@override String get reset_password_success => 'Has restablecido tu contraseña con éxito';
+	@override String get reset_password_success_message => 'Has restablecido tu contraseña con éxito. Ahora puedes iniciar sesión.';
+	@override String get reset_password_title => 'Restablecer contraseña';
+	@override String get reset_password_subtitle => 'Ingresa tu nueva contraseña';
+	@override String get reset_password => 'Restablecer contraseña';
+	@override String get new_password_hint => 'Nueva contraseña';
 }
 
 /// The flat map containing all translations for locale <es>.
@@ -165,6 +171,12 @@ extension on TranslationsEs {
 			'verify_otp' => 'Verificar OTP',
 			'otp_success' => 'Has verificado tu email con éxito',
 			'otp_success_message' => 'Has verificado tu email con éxito. Ahora puedes iniciar sesión.',
+			'reset_password_success' => 'Has restablecido tu contraseña con éxito',
+			'reset_password_success_message' => 'Has restablecido tu contraseña con éxito. Ahora puedes iniciar sesión.',
+			'reset_password_title' => 'Restablecer contraseña',
+			'reset_password_subtitle' => 'Ingresa tu nueva contraseña',
+			'reset_password' => 'Restablecer contraseña',
+			'new_password_hint' => 'Nueva contraseña',
 			_ => null,
 		};
 	}

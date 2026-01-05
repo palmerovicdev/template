@@ -115,4 +115,16 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(DataClientError(e));
     }
   }
+
+  @override
+  Future<Either<ErrorState, void>> resetPassword({required String email, required String newPassword}) async {
+    try {
+      // TODO: Implementar reset de contraseña real
+      // Por ahora, simulamos un reset exitoso
+      await Future.delayed(const Duration(milliseconds: 300));
+      return const Right(null);
+    } on Exception catch (e, _) {
+      return Left(DataClientError(e));
+    }
+  }
 }

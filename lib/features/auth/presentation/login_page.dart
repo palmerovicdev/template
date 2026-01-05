@@ -26,7 +26,6 @@ class LoginPage extends StatelessWidget {
               break;
             case .authenticated:
               SnackbarHelper.showSuccess(title: t.auth_success, message: t.auth_success);
-              sl<SignInBloc>().add(ResetState());
             case _:
           }
         },

@@ -4,6 +4,7 @@ enum Routes {
   signUp,
   forgotPassword,
   otp,
+  resetPassword,
   splash
   ;
 

@@ -57,5 +57,11 @@
   "otp_subtitle": "Enter the code we sent to your email",
   "verify_otp": "Verify OTP",
   "otp_success": "You have successfully verified your email",
-  "otp_success_message": "You have successfully verified your email. You can now sign in."
+  "otp_success_message": "You have successfully verified your email. You can now sign in.",
+  "reset_password_success": "You have successfully reset your password",
+  "reset_password_success_message": "You have successfully reset your password. You can now sign in.",
+  "reset_password_title": "Reset Password",
+  "reset_password_subtitle": "Enter your new password",
+  "reset_password": "Reset Password",
+  "new_password_hint": "New Password"
 }

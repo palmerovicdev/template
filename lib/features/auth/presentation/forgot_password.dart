@@ -20,15 +20,15 @@ class ForgotPassword extends StatelessWidget {
       body: BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
         listener: (context, state) {
           switch (state.status) {
-            case .failed:
+            case ForgotPasswordStatus.failed:
               if (state.errorMessage != null) {
                 SnackbarHelper.showError(title: t.error_message, message: state.errorMessage!);
               }
               break;
-            case .success:
-              SnackbarHelper.showSuccess(title: t.auth_success, message: t.auth_success);
-              context.go(Routes.login.path);
-              sl<ForgotPasswordBloc>().add(ResetState());
+            case ForgotPasswordStatus.success:
+              if (state.email != null) {
+                context.push(Routes.resetPassword.path, extra: state.email);
+              }
             case _:
           }
         },
@@ -37,9 +37,9 @@ class ForgotPassword extends StatelessWidget {
             slivers: [
               const ForgotPasswordLogo(),
               const ForgotPasswordTitle(),
-              if (state.status == .initial)
+              if (state.status == ForgotPasswordStatus.initial)
                 const ForgotPasswordForm(),
-              if (state.status == .validateCode)
+              if (state.status == ForgotPasswordStatus.validateCode)
                 const ForgotPasswordValidateCode(),
             ],
           );

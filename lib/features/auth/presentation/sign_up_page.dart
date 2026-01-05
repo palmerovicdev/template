@@ -25,7 +25,7 @@ class SignUpPage extends StatelessWidget {
               break;
             case .success:
               SnackbarHelper.showSuccess(title: t.sign_up_success, message: t.sign_up_success);
-              context.go(Routes.otp.path, extra: {'email': state.user!.email});
+              context.go(Routes.otp.path, extra: state.user!.email);
               sl<SignUpBloc>().add(ResetState());
             case _:
           }

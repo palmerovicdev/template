@@ -8,6 +8,7 @@ import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_state.d
 import 'package:template/features/auth/presentation/forgot_password.dart';
 import 'package:template/features/auth/presentation/login_page.dart';
 import 'package:template/features/auth/presentation/otp_page.dart';
+import 'package:template/features/auth/presentation/reset_password_page.dart';
 import 'package:template/features/auth/presentation/sign_up_page.dart';
 import 'package:template/features/home/home_page.dart';
 import 'package:template/features/splash_page.dart';
@@ -26,9 +27,10 @@ var router = GoRouter(
     final isSignUp = state.matchedLocation == Routes.signUp.path;
     final isForgotPassword = state.matchedLocation == Routes.forgotPassword.path;
     final isOtp = state.matchedLocation == Routes.otp.path;
+    final isResetPassword = state.matchedLocation == Routes.resetPassword.path;
     final isAuthenticated = bloc.state.status == .authenticated;
 
-    if (!isLogin && !isSignUp && !isForgotPassword && !isOtp && !isAuthenticated) {
+    if (!isLogin && !isSignUp && !isForgotPassword && !isOtp && !isResetPassword && !isAuthenticated) {
       return Routes.login.path;
     }
 
@@ -42,8 +44,15 @@ var router = GoRouter(
     GoRoute(
       path: Routes.otp.path,
       builder: (context, state) {
-        final email = state.uri.queryParameters['email'] ?? '';
+        final email = state.extra as String? ?? '';
         return OtpPage(email: email);
+      },
+    ),
+    GoRoute(
+      path: Routes.resetPassword.path,
+      builder: (context, state) {
+        final email = state.extra as String? ?? '';
+        return ResetPasswordPage(email: email);
       },
     ),
     GoRoute(path: Routes.home.path, builder: (_, _) => const HomePage()),

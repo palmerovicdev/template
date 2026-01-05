@@ -4,38 +4,39 @@ import 'package:go_router/go_router.dart';
 import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
-import 'package:template/features/auth/presentation/bloc/otp/otp_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/reset_password/reset_password_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_event.dart';
-import 'package:template/features/auth/presentation/sections/otp/otp_form.dart';
-import 'package:template/features/auth/presentation/sections/otp/otp_logo.dart';
-import 'package:template/features/auth/presentation/sections/otp/otp_title.dart';
+import 'package:template/features/auth/presentation/sections/reset_password/reset_password_form.dart';
+import 'package:template/features/auth/presentation/sections/reset_password/reset_password_logo.dart';
+import 'package:template/features/auth/presentation/sections/reset_password/reset_password_title.dart';
 import 'package:template/i18n/strings.g.dart';
 
-class OtpPage extends StatelessWidget {
-  const OtpPage({super.key, required this.email});
+class ResetPasswordPage extends StatelessWidget {
+  const ResetPasswordPage({super.key, required this.email});
 
   final String email;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<OtpBloc, OtpState>(
+      body: BlocConsumer<ResetPasswordBloc, ResetPasswordState>(
         listener: (context, state) {
           switch (state.status) {
-            case OtpStatus.failed:
+            case ResetPasswordStatus.failed:
               if (state.errorMessage != null) {
                 SnackbarHelper.showError(title: t.error_message, message: state.errorMessage!);
               }
               break;
-            case OtpStatus.success:
-              SnackbarHelper.showSuccess(title: t.otp_success, message: t.otp_success);
-              context.go(Routes.home.path);
+            case ResetPasswordStatus.success:
+              SnackbarHelper.showSuccess(title: t.reset_password_success, message: t.reset_password_success_message);
+              context.go(Routes.login.path);
+              sl<SignInBloc>().add(ResetState());
             case _:
           }
         },
         builder: (context, state) {
-          if (state.status == OtpStatus.loading) {
+          if (state.status == ResetPasswordStatus.loading) {
             return const Center(
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -45,9 +46,9 @@ class OtpPage extends StatelessWidget {
           }
           return CustomScrollView(
             slivers: [
-              const OtpLogo(),
-              const OtpTitle(),
-              OtpForm(email: email),
+              const ResetPasswordLogo(),
+              const ResetPasswordTitle(),
+              ResetPasswordForm(email: email),
             ],
           );
         },

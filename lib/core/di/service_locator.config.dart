@@ -18,6 +18,8 @@ import '../../features/auth/domain/repository/auth_repository.dart' as _i961;
 import '../../features/auth/presentation/bloc/forgot_password/forgot_password_bloc.dart'
     as _i1055;
 import '../../features/auth/presentation/bloc/otp/otp_bloc.dart' as _i75;
+import '../../features/auth/presentation/bloc/reset_password/reset_password_bloc.dart'
+    as _i591;
 import '../../features/auth/presentation/bloc/sign_in/sign_in_bloc.dart'
     as _i727;
 import '../../features/auth/presentation/bloc/sign_up/sign_up_bloc.dart'
@@ -47,6 +49,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i75.OtpBloc>(
       () => _i75.OtpBloc(gh<_i961.AuthRepository>()),
+    );
+    gh.lazySingleton<_i591.ResetPasswordBloc>(
+      () => _i591.ResetPasswordBloc(gh<_i961.AuthRepository>()),
     );
     gh.lazySingleton<_i727.SignInBloc>(
       () => _i727.SignInBloc(gh<_i961.AuthRepository>()),
