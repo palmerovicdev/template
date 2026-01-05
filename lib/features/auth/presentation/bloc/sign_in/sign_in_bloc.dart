@@ -44,9 +44,9 @@ class SignInBloc extends Bloc<SignInEvent, AuthState> {
       (user) {
         if (user != null) {
           emit(state.copyWith(status: AuthStatus.authenticated, user: user));
-        } else {
-          emit(state.copyWith(status: AuthStatus.unauthenticated, user: null));
+          return;
         }
+        emit(state.copyWith(status: AuthStatus.unauthenticated, user: null));
       },
     );
   }
