@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/auth_state.dart';
 import 'package:template/features/auth/presentation/sections/auth_form.dart';
-import 'package:template/features/auth/presentation/sections/auth_header.dart';
-import 'package:template/features/auth/presentation/sections/auth_toggle.dart';
+import 'package:template/features/auth/presentation/sections/auth_logo.dart';
+import 'package:template/features/auth/presentation/sections/auth_title.dart';
 import 'package:template/i18n/strings.g.dart';
 
 class AuthPage extends StatefulWidget {
@@ -50,17 +49,12 @@ class _AuthPageState extends State<AuthPage> {
               strokeWidth: 3,
             ),
           ),
-          _ =>  const SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: .spaceBetween,
-              children: [
-                AuthHeader(),
-                Gap(48),
-                AuthForm(),
-                Gap(48),
-                AuthToggle(),
-              ],
-            ),
+          _ => const CustomScrollView(
+            slivers: [
+              AuthLogo(),
+              AuthTitle(),
+              AuthForm(),
+            ],
           ),
         },
       ),
