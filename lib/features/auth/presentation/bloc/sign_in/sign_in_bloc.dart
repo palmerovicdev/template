@@ -28,9 +28,7 @@ class SignInBloc extends Bloc<SignInEvent, AuthState> {
     );
     result.fold(
       (failure) => emit(state.copyWith(status: AuthStatus.failure, errorMessage: failure.errorMessage)),
-      (user) {
-        emit(state.copyWith(status: AuthStatus.authenticated, user: user));
-      },
+      (user) => emit(state.copyWith(status: AuthStatus.authenticated, user: user)),
     );
   }
 
