@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/theme/bloc/theme_bloc.dart';
 import 'package:template/core/theme/bloc/theme_event.dart';
 import 'package:template/core/theme/domain/entity/app_theme_mode.dart';
-import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/core/widgets/custom_button.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/auth_event.dart';
@@ -77,7 +75,7 @@ class HomePage extends StatelessWidget {
                 Text(
                   t.welcome_back,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withAlpha(60),
                   ),
                 ),
               ],

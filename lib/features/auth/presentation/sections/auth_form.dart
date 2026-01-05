@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconic/iconic.dart';
 import 'package:template/core/di/service_locator.dart';
-import 'package:template/core/theme/app_colors.dart';
 import 'package:template/core/widgets/custom_button.dart';
 import 'package:template/core/widgets/input_form_field.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
@@ -49,7 +48,6 @@ class _AuthFormState extends State<AuthForm> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0),
