@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconic/iconic.dart';
 import 'package:template/core/di/service_locator.dart';
+import 'package:template/core/router/routes.dart';
 import 'package:template/core/theme/app_colors.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/core/widgets/loading_state.dart';
@@ -29,6 +31,7 @@ class LoginPage extends StatelessWidget {
               break;
             case .authenticated:
               SnackbarHelper.showSuccess(title: t.auth_success, message: t.auth_success);
+              context.go(Routes.home.path);
             case _:
           }
         },
