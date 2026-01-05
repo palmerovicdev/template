@@ -58,6 +58,7 @@ class _AuthPageState extends State<AuthPage> {
                 AuthHeader(),
                 Gap(48),
                 AuthForm(),
+                Gap(48),
                 AuthToggle(),
               ],
             ),
