@@ -100,7 +100,9 @@ class _LoginFormState extends State<LoginForm> {
               alignment: .topRight,
               child: TextButton(
                 style: TextButton.styleFrom(visualDensity: VisualDensity.compact),
-                onPressed: () {},
+                onPressed: () {
+                  context.push(Routes.forgotPassword.path);
+                },
                 child: Text(t.forgot_password),
               ),
             ),

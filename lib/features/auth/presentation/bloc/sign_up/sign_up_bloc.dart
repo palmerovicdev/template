@@ -28,7 +28,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     );
     result.fold(
       (failure) => emit(state.copyWith(status: SignUpStatus.failed, errorMessage: failure.errorMessage)),
-      (user) => emit(state.copyWith(status: SignUpStatus.success, user: user)),
+      (user) {
+        emit(state.copyWith(status: SignUpStatus.success, user: user));
+      },
     );
   }
 }

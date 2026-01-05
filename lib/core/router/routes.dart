@@ -2,6 +2,7 @@ enum Routes {
   home,
   login,
   signUp,
+  forgotPassword,
   splash
   ;
 

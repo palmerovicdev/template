@@ -282,4 +282,24 @@ class Strings with BaseTranslations<AppLocale, Strings> {
   ///
   /// es: 'Ya tienes una cuenta?'
   String get already_have_an_account => 'Already have an account?';
+
+  /// en: 'Request code'
+  ///
+  /// es: 'Solicitar código'
+  String get request_code => 'Request code';
+
+  /// en: 'Invalid code'
+  ///
+  /// es: 'Código inválido'
+  String get invalid_code => 'Invalid code';
+
+  /// en: 'Please enter your email'
+  ///
+  /// es: 'Por favor, ingresa tu email'
+  String get please_enter_your_email => 'Please enter your email';
+
+  /// en: 'We will send you a code'
+  ///
+  /// es: 'Te enviaremos un código'
+  String get we_will_send_you_a_code => 'We will send you a code';
 }

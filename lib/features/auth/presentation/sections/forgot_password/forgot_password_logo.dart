@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:iconic/iconic.dart';
 import 'package:template/core/theme/app_colors.dart';
 
-class SignUpLogo extends StatelessWidget {
-  const SignUpLogo({super.key});
+class ForgotPasswordLogo extends StatelessWidget {
+  const ForgotPasswordLogo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class SignUpLogo extends StatelessWidget {
       toolbarHeight: 52,
       flexibleSpace: FlexibleSpaceBar(
         title: Icon(
-          Iconic.user_add,
+          Icons.numbers,
           size: 40,
           color: AppColors.dark.text,
         ),

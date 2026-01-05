@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:template/core/router/routes.dart';
+import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/sign_up/sign_up_bloc.dart';
 import 'package:template/features/auth/presentation/sections/sign_up/sign_up_form.dart';
 import 'package:template/features/auth/presentation/sections/sign_up/sign_up_logo.dart';
+import 'package:template/i18n/strings.g.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -11,7 +15,19 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<SignUpBloc, SignUpState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          switch (state.status) {
+            case .failed:
+              if (state.errorMessage != null) {
+                SnackbarHelper.showError(title: t.error_message, message: state.errorMessage!);
+              }
+              break;
+            case .success:
+              SnackbarHelper.showSuccess(title: t.auth_success, message: t.auth_success);
+              context.go(Routes.login.path);
+            case _:
+          }
+        },
         builder: (context, state) {
           return const CustomScrollView(
             slivers: [

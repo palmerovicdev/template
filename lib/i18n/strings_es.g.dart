@@ -135,4 +135,12 @@ class StringsEs extends Strings with BaseTranslations<AppLocale, Strings> {
   String get repeat_password_hint => 'Repetir contraseña';
   @override
   String get already_have_an_account => 'Ya tienes una cuenta?';
+  @override
+  String get request_code => 'Solicitar código';
+  @override
+  String get invalid_code => 'Código inválido';
+  @override
+  String get please_enter_your_email => 'Por favor, ingresa tu email';
+  @override
+  String get we_will_send_you_a_code => 'Te enviaremos un código';
 }

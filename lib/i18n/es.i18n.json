@@ -46,5 +46,9 @@
   "name" : "Nombre",
   "name_hint" : "Nombre",
   "repeat_password_hint" : "Repetir contraseña",
-  "already_have_an_account" : "Ya tienes una cuenta?"
+  "already_have_an_account" : "Ya tienes una cuenta?",
+  "request_code": "Solicitar código",
+  "invalid_code": "Código inválido",
+  "please_enter_your_email": "Por favor, ingresa tu email",
+  "we_will_send_you_a_code": "Te enviaremos un código"
 }
