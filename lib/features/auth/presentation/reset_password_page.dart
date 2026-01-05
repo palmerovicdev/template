@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
+import 'package:template/core/widgets/loading_state.dart';
 import 'package:template/features/auth/presentation/bloc/reset_password/reset_password_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_event.dart';
@@ -35,22 +36,15 @@ class ResetPasswordPage extends StatelessWidget {
             case _:
           }
         },
-        builder: (context, state) {
-          if (state.status == ResetPasswordStatus.loading) {
-            return const Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                strokeWidth: 3,
-              ),
-            );
-          }
-          return CustomScrollView(
+        builder: (context, state) => switch (state.status) {
+          ResetPasswordStatus.loading => const LoadingState(),
+          _ => CustomScrollView(
             slivers: [
               const ResetPasswordLogo(),
               const ResetPasswordTitle(),
               ResetPasswordForm(email: email),
             ],
-          );
+          ),
         },
       ),
     );

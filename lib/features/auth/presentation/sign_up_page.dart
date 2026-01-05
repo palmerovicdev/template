@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
+import 'package:template/core/widgets/loading_state.dart';
 import 'package:template/features/auth/presentation/bloc/sign_up/sign_up_bloc.dart';
 import 'package:template/features/auth/presentation/sections/sign_up/sign_up_form.dart';
 import 'package:template/features/auth/presentation/sections/sign_up/sign_up_logo.dart';
@@ -30,13 +31,14 @@ class SignUpPage extends StatelessWidget {
             case _:
           }
         },
-        builder: (context, state) {
-          return const CustomScrollView(
+        builder: (context, state) => switch (state.status) {
+          .loading => const LoadingState(),
+          _ => const CustomScrollView(
             slivers: [
               SignUpLogo(),
               SignUpForm(),
             ],
-          );
+          ),
         },
       ),
     );

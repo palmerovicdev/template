@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconic/iconic.dart';
 import 'package:template/core/di/service_locator.dart';
+import 'package:template/core/theme/app_colors.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
+import 'package:template/core/widgets/loading_state.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_event.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_state.dart';
@@ -30,12 +33,7 @@ class LoginPage extends StatelessWidget {
           }
         },
         builder: (context, state) => switch (state.status) {
-          .loading || .authenticated => const Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              strokeWidth: 3,
-            ),
-          ),
+          .loading || .authenticated => const LoadingState(),
           _ => const CustomScrollView(
             slivers: [
               LoginLogo(),
