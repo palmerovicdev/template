@@ -8,14 +8,9 @@ import 'package:template/features/auth/presentation/sections/auth_logo.dart';
 import 'package:template/features/auth/presentation/sections/auth_title.dart';
 import 'package:template/i18n/strings.g.dart';
 
-class AuthPage extends StatefulWidget {
+class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
-  @override
-  State<AuthPage> createState() => _AuthPageState();
-}
-
-class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
