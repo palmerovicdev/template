@@ -20,11 +20,7 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.dark.bg,
-      ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           switch (state.status) {
@@ -55,13 +51,13 @@ class _AuthPageState extends State<AuthPage> {
               strokeWidth: 3,
             ),
           ),
-          _ =>  const Center(
+          _ =>  const SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: .spaceBetween,
               children: [
                 Header(),
                 Gap(48),
                 AuthForm(),
-                Spacer(),
                 AuthToggle(),
               ],
             ),
