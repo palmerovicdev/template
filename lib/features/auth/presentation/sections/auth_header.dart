@@ -32,15 +32,19 @@ class AuthHeader extends StatelessWidget {
             ),
           ),
         ),
-        const Gap(48),
+        const Gap(32),
         IconButton(
           onPressed: () {
             final newMode = isDark ? AppThemeMode.light : AppThemeMode.dark;
             sl<ThemeBloc>().add(ChangeTheme(newMode));
           },
-          icon: Icon(isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded),
+          icon: Icon(
+            isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+            size: 28,
+          ),
           tooltip: isDark ? 'Light Mode' : 'Dark Mode',
         ),
+        const Gap(16),
         Column(
           children: [
             Text(
