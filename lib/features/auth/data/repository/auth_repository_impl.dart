@@ -71,4 +71,48 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(DataClientError(e));
     }
   }
+
+  @override
+  Future<Either<ErrorState, UserEntity>> verifyOTP({required String email, required String otp}) async {
+    try {
+      // TODO: Implementar verificación OTP real
+      // Por ahora, simulamos una verificación exitosa
+      final user = await Future.delayed(
+        const Duration(milliseconds: 300),
+        () => UserEntity(
+          id: '789',
+          email: email,
+          displayName: 'OTP User',
+          avatarUrl: 'https://example.com/avatar.jpg',
+        ),
+      );
+      return Right(user);
+    } on Exception catch (e, _) {
+      return Left(DataClientError(e));
+    }
+  }
+
+  @override
+  Future<Either<ErrorState, void>> requestPasswordResetCode({required String email}) async {
+    try {
+      // TODO: Implementar envío real de código de recuperación
+      // Por ahora, simulamos un envío exitoso
+      await Future.delayed(const Duration(milliseconds: 300));
+      return const Right(null);
+    } on Exception catch (e, _) {
+      return Left(DataClientError(e));
+    }
+  }
+
+  @override
+  Future<Either<ErrorState, void>> validatePasswordResetCode({required String code}) async {
+    try {
+      // TODO: Implementar validación real de código de recuperación
+      // Por ahora, simulamos una validación exitosa
+      await Future.delayed(const Duration(milliseconds: 300));
+      return const Right(null);
+    } on Exception catch (e, _) {
+      return Left(DataClientError(e));
+    }
+  }
 }

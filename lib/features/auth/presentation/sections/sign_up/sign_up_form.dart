@@ -142,7 +142,7 @@ class _SignUpFormState extends State<SignUpForm> {
             const Gap(24),
             CustomButton(
               text: t.sign_up,
-              enabled: _isEmailValid && _isPasswordValid,
+              enabled: _isEmailValid && _isPasswordValid && _isPassword2Valid && _isNameValid && _passwordController.text == _password2Controller.text,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontSize: 18,
                 letterSpacing: 0.5,

@@ -10,6 +10,8 @@ class RequestCode extends ForgotPasswordEvent {
   final String email;
 }
 
+class ResetState extends ForgotPasswordEvent {}
+
 class ValidateCode extends ForgotPasswordEvent {
   ValidateCode({
     required this.code,

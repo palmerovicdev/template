@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_event.dart';
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_state.dart';
 import 'package:template/features/auth/presentation/sections/sign_in/login_form.dart';
 import 'package:template/features/auth/presentation/sections/sign_in/login_logo.dart';
@@ -24,6 +26,7 @@ class LoginPage extends StatelessWidget {
               break;
             case .authenticated:
               SnackbarHelper.showSuccess(title: t.auth_success, message: t.auth_success);
+              sl<SignInBloc>().add(ResetState());
             case _:
           }
         },

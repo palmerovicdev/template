@@ -4,12 +4,13 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 104 (52 per locale)
+/// Strings: 118 (59 per locale)
 ///
-/// Built on 2026-01-05 at 21:51 UTC
+/// Built on 2026-01-05 at 22:26 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint, unused_import
+// dart format off
 
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -26,71 +27,67 @@ part 'strings_en.g.dart';
 /// - LocaleSettings.setLocale(AppLocale.en) // set locale
 /// - Locale locale = AppLocale.en.flutterLocale // get flutter locale from enum
 /// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
-enum AppLocale with BaseAppLocale<AppLocale, Strings> {
-  en(languageCode: 'en'),
-  es(languageCode: 'es')
-  ;
+enum AppLocale with BaseAppLocale<AppLocale, Translations> {
+	en(languageCode: 'en'),
+	es(languageCode: 'es');
 
-  const AppLocale({
-    required this.languageCode,
-    this.scriptCode, // ignore: unused_element, unused_element_parameter
-    this.countryCode, // ignore: unused_element, unused_element_parameter
-  });
+	const AppLocale({
+		required this.languageCode,
+		this.scriptCode, // ignore: unused_element, unused_element_parameter
+		this.countryCode, // ignore: unused_element, unused_element_parameter
+	});
 
-  @override
-  final String languageCode;
-  @override
-  final String? scriptCode;
-  @override
-  final String? countryCode;
+	@override final String languageCode;
+	@override final String? scriptCode;
+	@override final String? countryCode;
 
-  @override
-  Future<Strings> build({
-    Map<String, Node>? overrides,
-    PluralResolver? cardinalResolver,
-    PluralResolver? ordinalResolver,
-  }) async {
-    switch (this) {
-      case AppLocale.en:
-        return StringsEn(
-          overrides: overrides,
-          cardinalResolver: cardinalResolver,
-          ordinalResolver: ordinalResolver,
-        );
-      case AppLocale.es:
-        await l_es.loadLibrary();
-        return l_es.StringsEs(
-          overrides: overrides,
-          cardinalResolver: cardinalResolver,
-          ordinalResolver: ordinalResolver,
-        );
-    }
-  }
+	@override
+	Future<Translations> build({
+		Map<String, Node>? overrides,
+		PluralResolver? cardinalResolver,
+		PluralResolver? ordinalResolver,
+	}) async {
+		switch (this) {
+			case AppLocale.en:
+				return TranslationsEn(
+					overrides: overrides,
+					cardinalResolver: cardinalResolver,
+					ordinalResolver: ordinalResolver,
+				);
+			case AppLocale.es:
+				await l_es.loadLibrary();
+				return l_es.TranslationsEs(
+					overrides: overrides,
+					cardinalResolver: cardinalResolver,
+					ordinalResolver: ordinalResolver,
+				);
+		}
+	}
 
-  @override
-  Strings buildSync({
-    Map<String, Node>? overrides,
-    PluralResolver? cardinalResolver,
-    PluralResolver? ordinalResolver,
-  }) {
-    switch (this) {
-      case AppLocale.en:
-        return StringsEn(
-          overrides: overrides,
-          cardinalResolver: cardinalResolver,
-          ordinalResolver: ordinalResolver,
-        );
-      case AppLocale.es:
-        return l_es.StringsEs(
-          overrides: overrides,
-          cardinalResolver: cardinalResolver,
-          ordinalResolver: ordinalResolver,
-        );
-    }
-  }
+	@override
+	Translations buildSync({
+		Map<String, Node>? overrides,
+		PluralResolver? cardinalResolver,
+		PluralResolver? ordinalResolver,
+	}) {
+		switch (this) {
+			case AppLocale.en:
+				return TranslationsEn(
+					overrides: overrides,
+					cardinalResolver: cardinalResolver,
+					ordinalResolver: ordinalResolver,
+				);
+			case AppLocale.es:
+				return l_es.TranslationsEs(
+					overrides: overrides,
+					cardinalResolver: cardinalResolver,
+					ordinalResolver: ordinalResolver,
+				);
+		}
+	}
 
-  /// Gets current instance managed by [LocaleSettings].
-  Strings get translations => LocaleSettings.instance.getTranslations(this);
+	/// Gets current instance managed by [LocaleSettings].
+	Translations get translations => LocaleSettings.instance.getTranslations(this);
 }
 
 /// Method A: Simple
@@ -101,7 +98,8 @@ enum AppLocale with BaseAppLocale<AppLocale, Strings> {
 ///
 /// Usage:
 /// String a = t.someKey.anotherKey;
-Strings get t => LocaleSettings.instance.currentTranslations;
+/// String b = t['someKey.anotherKey']; // Only for edge cases!
+Translations get t => LocaleSettings.instance.currentTranslations;
 
 /// Method B: Advanced
 ///
@@ -115,12 +113,13 @@ Strings get t => LocaleSettings.instance.currentTranslations;
 /// );
 ///
 /// Step 2:
-/// final t = Strings.of(context); // Get t variable.
+/// final t = Translations.of(context); // Get t variable.
 /// String a = t.someKey.anotherKey; // Use t variable.
-class TranslationProvider extends BaseTranslationProvider<AppLocale, Strings> {
-  TranslationProvider({required super.child}) : super(settings: LocaleSettings.instance);
+/// String b = t['someKey.anotherKey']; // Only for edge cases!
+class TranslationProvider extends BaseTranslationProvider<AppLocale, Translations> {
+	TranslationProvider({required super.child}) : super(settings: LocaleSettings.instance);
 
-  static InheritedLocaleData<AppLocale, Strings> of(BuildContext context) => InheritedLocaleData.of<AppLocale, Strings>(context);
+	static InheritedLocaleData<AppLocale, Translations> of(BuildContext context) => InheritedLocaleData.of<AppLocale, Translations>(context);
 }
 
 /// Method B shorthand via [BuildContext] extension method.
@@ -129,102 +128,56 @@ class TranslationProvider extends BaseTranslationProvider<AppLocale, Strings> {
 /// Usage (e.g. in a widget's build method):
 /// context.t.someKey.anotherKey
 extension BuildContextTranslationsExtension on BuildContext {
-  Strings get t => TranslationProvider.of(this).translations;
+	Translations get t => TranslationProvider.of(this).translations;
 }
 
 /// Manages all translation instances and the current locale
-class LocaleSettings extends BaseFlutterLocaleSettings<AppLocale, Strings> {
-  LocaleSettings._()
-    : super(
-        utils: AppLocaleUtils.instance,
-        lazy: true,
-      );
+class LocaleSettings extends BaseFlutterLocaleSettings<AppLocale, Translations> {
+	LocaleSettings._() : super(
+		utils: AppLocaleUtils.instance,
+		lazy: true,
+	);
 
-  static final instance = LocaleSettings._();
+	static final instance = LocaleSettings._();
 
-  // static aliases (checkout base methods for documentation)
-  static AppLocale get currentLocale => instance.currentLocale;
-  static Stream<AppLocale> getLocaleStream() => instance.getLocaleStream();
-  static Future<AppLocale> setLocale(AppLocale locale, {bool? listenToDeviceLocale = false}) =>
-      instance.setLocale(locale, listenToDeviceLocale: listenToDeviceLocale);
-  static Future<AppLocale> setLocaleRaw(String rawLocale, {bool? listenToDeviceLocale = false}) =>
-      instance.setLocaleRaw(rawLocale, listenToDeviceLocale: listenToDeviceLocale);
-  static Future<AppLocale> useDeviceLocale() => instance.useDeviceLocale();
-  static Future<void> setPluralResolver({String? language, AppLocale? locale, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver}) =>
-      instance.setPluralResolver(
-        language: language,
-        locale: locale,
-        cardinalResolver: cardinalResolver,
-        ordinalResolver: ordinalResolver,
-      );
+	// static aliases (checkout base methods for documentation)
+	static AppLocale get currentLocale => instance.currentLocale;
+	static Stream<AppLocale> getLocaleStream() => instance.getLocaleStream();
+	static Future<AppLocale> setLocale(AppLocale locale, {bool? listenToDeviceLocale = false}) => instance.setLocale(locale, listenToDeviceLocale: listenToDeviceLocale);
+	static Future<AppLocale> setLocaleRaw(String rawLocale, {bool? listenToDeviceLocale = false}) => instance.setLocaleRaw(rawLocale, listenToDeviceLocale: listenToDeviceLocale);
+	static Future<AppLocale> useDeviceLocale() => instance.useDeviceLocale();
+	static Future<void> setPluralResolver({String? language, AppLocale? locale, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver}) => instance.setPluralResolver(
+		language: language,
+		locale: locale,
+		cardinalResolver: cardinalResolver,
+		ordinalResolver: ordinalResolver,
+	);
 
-  // synchronous versions
-  static AppLocale setLocaleSync(AppLocale locale, {bool? listenToDeviceLocale = false}) =>
-      instance.setLocaleSync(locale, listenToDeviceLocale: listenToDeviceLocale);
-  static AppLocale setLocaleRawSync(String rawLocale, {bool? listenToDeviceLocale = false}) =>
-      instance.setLocaleRawSync(rawLocale, listenToDeviceLocale: listenToDeviceLocale);
-  static AppLocale useDeviceLocaleSync() => instance.useDeviceLocaleSync();
-  static void setPluralResolverSync({String? language, AppLocale? locale, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver}) =>
-      instance.setPluralResolverSync(
-        language: language,
-        locale: locale,
-        cardinalResolver: cardinalResolver,
-        ordinalResolver: ordinalResolver,
-      );
+	// synchronous versions
+	static AppLocale setLocaleSync(AppLocale locale, {bool? listenToDeviceLocale = false}) => instance.setLocaleSync(locale, listenToDeviceLocale: listenToDeviceLocale);
+	static AppLocale setLocaleRawSync(String rawLocale, {bool? listenToDeviceLocale = false}) => instance.setLocaleRawSync(rawLocale, listenToDeviceLocale: listenToDeviceLocale);
+	static AppLocale useDeviceLocaleSync() => instance.useDeviceLocaleSync();
+	static void setPluralResolverSync({String? language, AppLocale? locale, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver}) => instance.setPluralResolverSync(
+		language: language,
+		locale: locale,
+		cardinalResolver: cardinalResolver,
+		ordinalResolver: ordinalResolver,
+	);
 }
 
 /// Provides utility functions without any side effects.
-class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, Strings> {
-  AppLocaleUtils._()
-    : super(
-        baseLocale: AppLocale.en,
-        locales: AppLocale.values,
-      );
+class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, Translations> {
+	AppLocaleUtils._() : super(
+		baseLocale: AppLocale.en,
+		locales: AppLocale.values,
+	);
 
-  static final instance = AppLocaleUtils._();
+	static final instance = AppLocaleUtils._();
 
-  // static aliases (checkout base methods for documentation)
-  static AppLocale parse(String rawLocale) => instance.parse(rawLocale);
-  static AppLocale parseLocaleParts({required String languageCode, String? scriptCode, String? countryCode}) =>
-      instance.parseLocaleParts(languageCode: languageCode, scriptCode: scriptCode, countryCode: countryCode);
-  static AppLocale findDeviceLocale() => instance.findDeviceLocale();
-  static List<Locale> get supportedLocales => instance.supportedLocales;
-  static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
-}
-
-// interfaces generated as mixins
-
-mixin PageData2 {
-  String get title;
-  String? get content => null;
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! PageData2) return false;
-
-    final fields = $fields;
-    final otherFields = other.$fields;
-    for (int i = 0; i < fields.length; i++) {
-      if (fields[i] != otherFields[i]) return false;
-    }
-
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final fields = $fields;
-    int result = fields.first.hashCode;
-    for (final element in fields.skip(1)) {
-      result *= element.hashCode;
-    }
-
-    return result;
-  }
-
-  List<Object?> get $fields => [
-    title,
-    content,
-  ];
+	// static aliases (checkout base methods for documentation)
+	static AppLocale parse(String rawLocale) => instance.parse(rawLocale);
+	static AppLocale parseLocaleParts({required String languageCode, String? scriptCode, String? countryCode}) => instance.parseLocaleParts(languageCode: languageCode, scriptCode: scriptCode, countryCode: countryCode);
+	static AppLocale findDeviceLocale() => instance.findDeviceLocale();
+	static List<Locale> get supportedLocales => instance.supportedLocales;
+	static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
 }

@@ -12,6 +12,7 @@ part 'sign_up_state.dart';
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc(this.authRepository) : super(SignUpState.initial()) {
     on<SignUp>(_onSignUp);
+    on<ResetState>(_onResetState);
   }
 
   final AuthRepository authRepository;
@@ -33,4 +34,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       },
     );
   }
+
+  Future<void> _onResetState(
+    ResetState event,
+    Emitter<SignUpState> emit,
+  ) async {
+    emit(SignUpState.initial());
+  }
+
 }

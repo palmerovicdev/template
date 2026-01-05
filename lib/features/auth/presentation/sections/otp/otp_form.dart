@@ -4,17 +4,19 @@ import 'package:iconic/iconic.dart';
 import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/widgets/custom_button.dart';
 import 'package:template/core/widgets/validation_code_field.dart';
-import 'package:template/features/auth/presentation/bloc/forgot_password/forgot_password_bloc.dart';
+import 'package:template/features/auth/presentation/bloc/otp/otp_bloc.dart';
 import 'package:template/i18n/strings.g.dart';
 
-class ForgotPasswordValidateCode extends StatefulWidget {
-  const ForgotPasswordValidateCode({super.key});
+class OtpForm extends StatefulWidget {
+  const OtpForm({super.key, required this.email});
+
+  final String email;
 
   @override
-  State<ForgotPasswordValidateCode> createState() => _ForgotPasswordValidateCodeState();
+  State<OtpForm> createState() => _OtpFormState();
 }
 
-class _ForgotPasswordValidateCodeState extends State<ForgotPasswordValidateCode> {
+class _OtpFormState extends State<OtpForm> {
   final _codeController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool _isCodeValid = false;
@@ -35,11 +37,12 @@ class _ForgotPasswordValidateCodeState extends State<ForgotPasswordValidateCode>
     super.dispose();
   }
 
-  void _handleRequestCode() {
+  void _handleVerifyOtp() {
     if (_isCodeValid) {
-      sl<ForgotPasswordBloc>().add(
-        ValidateCode(
-          code: _codeController.text.trim(),
+      sl<OtpBloc>().add(
+        VerifyOtp(
+          email: widget.email,
+          otp: _codeController.text.trim(),
         ),
       );
     }
@@ -68,9 +71,9 @@ class _ForgotPasswordValidateCodeState extends State<ForgotPasswordValidateCode>
                 letterSpacing: 0.5,
               ),
               onPressed: () {
-                _handleRequestCode();
+                _handleVerifyOtp();
               },
-              icon: Iconic.envelope,
+              icon: Iconic.shield_check,
             ),
           ],
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/sign_up/sign_up_bloc.dart';
@@ -23,8 +24,9 @@ class SignUpPage extends StatelessWidget {
               }
               break;
             case .success:
-              SnackbarHelper.showSuccess(title: t.auth_success, message: t.auth_success);
-              context.go(Routes.login.path);
+              SnackbarHelper.showSuccess(title: t.sign_up_success, message: t.sign_up_success);
+              context.go(Routes.otp.path, extra: {'email': state.user!.email});
+              sl<SignUpBloc>().add(ResetState());
             case _:
           }
         },

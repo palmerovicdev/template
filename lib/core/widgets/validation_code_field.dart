@@ -6,40 +6,44 @@ class ValidationCodeField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.formKey,
+    required this.onCompleted,
   });
 
   final TextEditingController controller;
-  final GlobalKey formKey;
+  final GlobalKey<FormState> formKey;
+  final ValueChanged<bool> onCompleted;
 
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: const TextStyle(
+      textStyle: TextStyle(
         fontSize: 20,
-        color: Color.fromRGBO(30, 60, 87, 1),
+        color: Theme.of(context).colorScheme.onSurface,
         fontWeight: FontWeight.w600,
       ),
       decoration: BoxDecoration(
-        border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
         borderRadius: BorderRadius.circular(20),
       ),
     );
 
     final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
+      border: Border.all(color: Theme.of(context).colorScheme.primary),
       borderRadius: BorderRadius.circular(8),
     );
 
     final submittedPinTheme = defaultPinTheme.copyWith(
       decoration: defaultPinTheme.decoration?.copyWith(
-        color: const Color.fromRGBO(234, 239, 243, 1),
+        color: Theme.of(context).colorScheme.surface,
       ),
     );
 
     return Pinput(
       key: formKey,
+      closeKeyboardWhenCompleted: true,
+      onCompleted: (_) => onCompleted(true),
       controller: controller,
       keyboardType: .number,
       defaultPinTheme: defaultPinTheme,

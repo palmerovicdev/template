@@ -11,6 +11,7 @@ class SignInBloc extends Bloc<SignInEvent, AuthState> {
     on<SignIn>(_onSignIn);
     on<GetCurrentUserEvent>(_onGetCurrentUser);
     on<SignOutEvent>(_onSignOut);
+    on<ResetState>(_onResetState);
   }
 
   final AuthRepository authRepository;
@@ -63,5 +64,12 @@ class SignInBloc extends Bloc<SignInEvent, AuthState> {
       (_) => emit(AuthState.initial().copyWith(status: AuthStatus.logout)),
     );
     authStateNotifier.value = AuthState.initial().copyWith(status: AuthStatus.logout);
+  }
+
+  Future<void> _onResetState(
+    ResetState event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthState.initial());
   }
 }

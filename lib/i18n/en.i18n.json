@@ -50,5 +50,12 @@
   "request_code": "Request code",
   "invalid_code": "Invalid code",
   "please_enter_your_email": "Please enter your email",
-  "we_will_send_you_a_code": "We will send you a code"
+  "we_will_send_you_a_code": "We will send you a code",
+  "sign_up_success": "You have successfully signed up",
+  "sign_up_success_message": "You have successfully signed up. Please check your email for a confirmation code.",
+  "otp_title": "Verify your email",
+  "otp_subtitle": "Enter the code we sent to your email",
+  "verify_otp": "Verify OTP",
+  "otp_success": "You have successfully verified your email",
+  "otp_success_message": "You have successfully verified your email. You can now sign in."
 }

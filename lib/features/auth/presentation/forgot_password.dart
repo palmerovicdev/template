@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
 import 'package:template/features/auth/presentation/bloc/forgot_password/forgot_password_bloc.dart';
@@ -27,6 +28,7 @@ class ForgotPassword extends StatelessWidget {
             case .success:
               SnackbarHelper.showSuccess(title: t.auth_success, message: t.auth_success);
               context.go(Routes.login.path);
+              sl<ForgotPasswordBloc>().add(ResetState());
             case _:
           }
         },

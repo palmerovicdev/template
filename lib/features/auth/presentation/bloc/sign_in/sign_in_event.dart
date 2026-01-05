@@ -13,3 +13,7 @@ class SignIn extends SignInEvent {
 class GetCurrentUserEvent extends SignInEvent {}
 
 class SignOutEvent extends SignInEvent {}
+
+class ResetState extends SignInEvent {}
+
+

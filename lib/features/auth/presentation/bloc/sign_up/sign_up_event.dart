@@ -15,3 +15,5 @@ final class SignUp extends SignUpEvent {
   final String password;
 }
 
+
+final class ResetState extends SignUpEvent {}

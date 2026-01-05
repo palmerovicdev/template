@@ -50,5 +50,12 @@
   "request_code": "Solicitar código",
   "invalid_code": "Código inválido",
   "please_enter_your_email": "Por favor, ingresa tu email",
-  "we_will_send_you_a_code": "Te enviaremos un código"
+  "we_will_send_you_a_code": "Te enviaremos un código",
+  "sign_up_success": "Te has registrado con éxito",
+  "sign_up_success_message": "Te has registrado con éxito. Por favor, revisa tu email para un código de confirmación.",
+  "otp_title": "Verifica tu email",
+  "otp_subtitle": "Ingresa el código que te enviamos a tu email",
+  "verify_otp": "Verificar OTP",
+  "otp_success": "Has verificado tu email con éxito",
+  "otp_success_message": "Has verificado tu email con éxito. Ahora puedes iniciar sesión."
 }

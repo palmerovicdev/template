@@ -7,6 +7,7 @@ import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_bloc.da
 import 'package:template/features/auth/presentation/bloc/sign_in/sign_in_state.dart';
 import 'package:template/features/auth/presentation/forgot_password.dart';
 import 'package:template/features/auth/presentation/login_page.dart';
+import 'package:template/features/auth/presentation/otp_page.dart';
 import 'package:template/features/auth/presentation/sign_up_page.dart';
 import 'package:template/features/home/home_page.dart';
 import 'package:template/features/splash_page.dart';
@@ -24,9 +25,10 @@ var router = GoRouter(
     final isLogin = state.matchedLocation == Routes.login.path;
     final isSignUp = state.matchedLocation == Routes.signUp.path;
     final isForgotPassword = state.matchedLocation == Routes.forgotPassword.path;
+    final isOtp = state.matchedLocation == Routes.otp.path;
     final isAuthenticated = bloc.state.status == .authenticated;
 
-    if (!isLogin && !isSignUp && !isForgotPassword && !isAuthenticated) {
+    if (!isLogin && !isSignUp && !isForgotPassword && !isOtp && !isAuthenticated) {
       return Routes.login.path;
     }
 
@@ -37,6 +39,13 @@ var router = GoRouter(
     GoRoute(path: Routes.login.path, builder: (_, _) => const LoginPage()),
     GoRoute(path: Routes.signUp.path, builder: (_, _) => const SignUpPage()),
     GoRoute(path: Routes.forgotPassword.path, builder: (_, _) => const ForgotPassword()),
+    GoRoute(
+      path: Routes.otp.path,
+      builder: (context, state) {
+        final email = state.uri.queryParameters['email'] ?? '';
+        return OtpPage(email: email);
+      },
+    ),
     GoRoute(path: Routes.home.path, builder: (_, _) => const HomePage()),
   ],
 );
