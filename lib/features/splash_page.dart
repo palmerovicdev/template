@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconic/iconic.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/auth_state.dart';
@@ -27,7 +28,7 @@ class SplashPage extends StatelessWidget {
             mainAxisAlignment: .center,
             children: [
               Icon(
-                Icons.flash_on_rounded,
+                Iconic.bold_bold,
                 size: 64,
                 color: Colors.white,
               ),
