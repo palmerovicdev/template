@@ -56,8 +56,8 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Icon(
-              Iconic.bold,
-              size: 24,
+              Iconic.letter_case,
+              size: 16,
             ),
           ),
           const SizedBox(width: 12),
