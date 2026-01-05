@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconic/iconic.dart';
 import 'package:template/core/di/service_locator.dart';
 import 'package:template/core/router/routes.dart';
 import 'package:template/core/theme/bloc/theme_bloc.dart';
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Icon(
-              Icons.flash_on_rounded,
+              Iconic.bold,
               size: 24,
             ),
           ),
@@ -88,14 +89,14 @@ class HomePage extends StatelessWidget {
               final newMode = isDark ? AppThemeMode.light : AppThemeMode.dark;
               sl<ThemeBloc>().add(ChangeTheme(newMode));
             },
-            icon: Icon(isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded),
+            icon: Icon(isDark ? Iconic.sun_bold : Iconic.moon_solid),
             tooltip: isDark ? 'Light Mode' : 'Dark Mode',
           ),
 
           // Logout Button
           IconButton(
             onPressed: () => _showLogoutDialog(context),
-            icon: const Icon(Icons.logout_rounded),
+            icon: const Icon(Iconic.sign_out_alt),
             tooltip: t.logout,
           ),
         ],
@@ -120,7 +121,7 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Icon(
-              Icons.wb_sunny_rounded,
+              Iconic.sun_bold,
               size: 32,
             ),
           ),

@@ -39,7 +39,7 @@ class AuthHeader extends StatelessWidget {
             sl<ThemeBloc>().add(ChangeTheme(newMode));
           },
           icon: Icon(
-            isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+            isDark ? Iconic.sun_bold : Iconic.moon_solid,
             size: 28,
           ),
           tooltip: isDark ? 'Light Mode' : 'Dark Mode',

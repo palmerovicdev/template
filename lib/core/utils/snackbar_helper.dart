@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconic/iconic.dart';
 
 class SnackbarHelper {
   static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -13,7 +14,7 @@ class SnackbarHelper {
       message: message,
       backgroundColor: Colors.green[600],
       textColor: Colors.white,
-      icon: Icons.check_circle,
+      icon: Iconic.checkbox_bold,
       duration: duration,
     );
   }
@@ -28,7 +29,7 @@ class SnackbarHelper {
       message: message,
       backgroundColor: Colors.red[600],
       textColor: Colors.white,
-      icon: Icons.error,
+      icon: Iconic.cross_circle_bold,
       duration: duration,
     );
   }
@@ -43,7 +44,7 @@ class SnackbarHelper {
       message: message,
       backgroundColor: Colors.orange[600],
       textColor: Colors.white,
-      icon: Icons.warning,
+      icon: Iconic.signal_alt_bold,
       duration: duration,
     );
   }
@@ -58,7 +59,7 @@ class SnackbarHelper {
       message: message,
       backgroundColor: Colors.blue[600],
       textColor: Colors.white,
-      icon: Icons.info,
+      icon: Iconic.info_bold,
       duration: duration,
     );
   }

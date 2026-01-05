@@ -11,6 +11,7 @@ class InputFormField extends StatefulWidget {
     this.controller,
     this.keyboardType,
     this.isPassword = false,
+    this.prefixSize = 16.0,
   });
 
   final String hintText;
@@ -19,6 +20,7 @@ class InputFormField extends StatefulWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final bool isPassword;
+  final double prefixSize;
 
   @override
   State<InputFormField> createState() => _InputFormFieldState();
@@ -68,7 +70,11 @@ class _InputFormFieldState extends State<InputFormField> {
                   )
                 : null,
             hintText: widget.hintText,
-            prefixIcon: Icon(widget.prefixIcon, color: isError ? Colors.red : null),
+            prefixIcon: Icon(
+              widget.prefixIcon,
+              color: isError ? Colors.red : null,
+              size: widget.prefixSize,
+            ),
           ),
         ),
       ),

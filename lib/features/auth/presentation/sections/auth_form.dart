@@ -70,14 +70,15 @@ class _AuthFormState extends State<AuthForm> {
               return true;
             },
             hintText: t.email_hint,
-            prefixIcon: Icons.email_outlined,
+            prefixIcon: Iconic.envelope,
           ),
           const Gap(16),
           InputFormField(
             controller: _passwordController,
             keyboardType: TextInputType.visiblePassword,
             hintText: t.password_hint,
-            prefixIcon: Icons.lock_outlined,
+            prefixIcon: Iconic.lock,
+            prefixSize: 18.0,
             isPassword: true,
             isValid: (value) {
               if (value == null || value.isEmpty) {
