@@ -34,10 +34,6 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.light.text,
-        disabledForegroundColor: AppColors.light.textMuted,
-        iconColor: AppColors.light.text,
-        disabledIconColor: AppColors.light.textMuted,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.remX15),
         ),
@@ -118,10 +114,6 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.light.text,
-        disabledForegroundColor: AppColors.light.textMuted,
-        iconColor: AppColors.light.text,
-        disabledIconColor: AppColors.light.textMuted,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.remX15),
         ),

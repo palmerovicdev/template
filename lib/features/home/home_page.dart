@@ -7,6 +7,7 @@ import 'package:template/core/theme/bloc/theme_bloc.dart';
 import 'package:template/core/theme/bloc/theme_event.dart';
 import 'package:template/core/theme/domain/entity/app_theme_mode.dart';
 import 'package:template/core/utils/snackbar_helper.dart';
+import 'package:template/core/widgets/custom_button.dart';
 import 'package:template/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:template/features/auth/presentation/bloc/auth_event.dart';
 import 'package:template/i18n/strings.g.dart';
@@ -146,6 +147,7 @@ class HomePage extends StatelessWidget {
   }
 
   void _showLogoutDialog(BuildContext context) {
+    final theme = Theme.of(context);
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -159,13 +161,19 @@ class HomePage extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
             child: Text(t.cancel),
           ),
-          ElevatedButton(
+          CustomButton(
+            text: t.logout,
+            expand: false,
+            height: 40,
+            enabled: true,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              letterSpacing: 0.5,
+            ),
             onPressed: () {
               Navigator.of(context).pop();
               sl<AuthBloc>().add(SignOutEvent());
               context.go(Routes.login.path);
             },
-            child: Text(t.logout),
           ),
         ],
       ),

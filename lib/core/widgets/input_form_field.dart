@@ -26,7 +26,7 @@ class InputFormField extends StatefulWidget {
 
 class _InputFormFieldState extends State<InputFormField> {
   bool isError = false;
-  bool obscureText = false;
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
