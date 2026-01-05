@@ -96,7 +96,7 @@ class HomePage extends StatelessWidget {
           // Logout Button
           IconButton(
             onPressed: () => _showLogoutDialog(context),
-            icon: const Icon(Iconic.sign_out_alt),
+            icon: const Icon(Iconic.sign_out_alt_bold),
             tooltip: t.logout,
           ),
         ],
